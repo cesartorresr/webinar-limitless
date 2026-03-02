@@ -4,667 +4,334 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cibersegurança Hospitalar — Webinar Gratuito | 17 de Março</title>
-  <meta name="description" content="Um ransomware pode paralisar um hospital inteiro. Descubra como proteger sua operação com especialistas de segurança hospitalar. Webinar gratuito, 17/03.">
+  <meta name="description" content="CISOs e Diretores de TI dos maiores hospitais do Brasil debatem ao vivo estratégias de continuidade operacional contra ransomware. Gratuito.">
+  <meta property="og:title" content="Se um ransomware travasse seus sistemas amanhã, sua UTI operaria?">
+  <meta property="og:description" content="Especialistas do Hospital Einstein, HID Global e Hospital Santa Rita revelam estratégias reais de proteção. 17 de março, 11h. Gratuito.">
+  <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    
-    :root {
-      --red: #DC2626;
-      --red-dark: #991B1B;
-      --red-glow: rgba(220, 38, 38, 0.15);
-      --dark: #0A0A0F;
-      --dark-card: #111118;
-      --dark-border: #1E1E2A;
-      --text: #E8E8ED;
-      --text-muted: #8888A0;
-      --text-dim: #55556A;
-      --green: #10B981;
-      --amber: #F59E0B;
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --bg:#09090b;--bg2:#111113;--bg3:#18181b;
+      --text:#fafafa;--text2:#a1a1aa;
+      --red:#ef4444;--red-glow:rgba(239,68,68,0.12);
+      --blue:#3b82f6;--green:#22c55e;
+      --border:rgba(255,255,255,0.07);
+      --radius:12px;
     }
+    body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;padding-bottom:80px}
+    a{color:inherit;text-decoration:none}
 
-    html { scroll-behavior: smooth; }
-    
-    body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      background: var(--dark);
-      color: var(--text);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
+    /* URGENCY BAR */
+    .urgency{background:linear-gradient(90deg,#dc2626,#991b1b);text-align:center;padding:10px 16px;font-size:13px;font-weight:600;letter-spacing:.3px;position:sticky;top:0;z-index:100}
+    .urgency span{animation:pulse 2s ease-in-out infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.7}}
 
-    /* === ALERT BAR === */
-    .alert-bar {
-      background: var(--red);
-      color: white;
-      text-align: center;
-      padding: 10px 16px;
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 0.01em;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    .alert-bar span { opacity: 0.85; font-weight: 400; }
+    .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
 
-    /* === HERO === */
-    .hero {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 60px 24px 40px;
-      text-align: center;
-    }
-    
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--red-glow);
-      border: 1px solid rgba(220, 38, 38, 0.3);
-      color: var(--red);
-      padding: 6px 16px;
-      border-radius: 100px;
-      font-size: 13px;
-      font-weight: 600;
-      margin-bottom: 28px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    .badge::before {
-      content: '';
-      width: 6px;
-      height: 6px;
-      background: var(--red);
-      border-radius: 50%;
-      animation: pulse 2s infinite;
-    }
+    /* HERO */
+    .hero{padding:72px 0 48px;text-align:center;position:relative}
+    .hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:700px;height:500px;background:radial-gradient(ellipse,var(--red-glow),transparent 70%);pointer-events:none}
+    .hero>*{position:relative}
+    .pill{display:inline-flex;align-items:center;gap:6px;background:var(--bg3);border:1px solid var(--border);padding:6px 14px;border-radius:20px;font-size:12px;font-weight:600;color:var(--text2);margin-bottom:20px}
+    .pill .dot{width:6px;height:6px;border-radius:50%;background:var(--red);animation:blink 1.5s infinite}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+    h1{font-size:clamp(30px,5vw,50px);font-weight:900;line-height:1.08;letter-spacing:-1.5px;margin-bottom:18px;max-width:800px;margin-left:auto;margin-right:auto}
+    h1 em{font-style:italic;color:var(--red)}
+    .hero-sub{font-size:17px;color:var(--text2);max-width:620px;margin:0 auto 28px;line-height:1.65}
+    .hero-sub strong{color:var(--text);font-weight:600}
 
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
-    }
+    /* CTA */
+    .cta{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;padding:15px 36px;border-radius:8px;font-size:16px;font-weight:700;transition:all .2s;border:none;cursor:pointer}
+    .cta:hover{background:#dc2626;transform:translateY(-2px);box-shadow:0 8px 32px rgba(239,68,68,.25)}
+    .cta-sm{padding:11px 24px;font-size:14px}
+    .meta{margin-top:10px;font-size:12px;color:var(--text2);display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
 
-    .hero h1 {
-      font-size: clamp(28px, 5vw, 46px);
-      font-weight: 800;
-      line-height: 1.1;
-      letter-spacing: -0.03em;
-      margin-bottom: 20px;
-      color: #fff;
-    }
-    .hero h1 em {
-      font-style: normal;
-      color: var(--red);
-    }
+    /* COUNTDOWN */
+    .cd-row{display:flex;justify-content:center;gap:12px;margin:36px 0 0}
+    .cd-box{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:14px 18px;min-width:72px;text-align:center}
+    .cd-box .n{font-size:28px;font-weight:800;color:var(--red);display:block;line-height:1.1}
+    .cd-box .l{font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:1px;margin-top:2px}
 
-    .hero-sub {
-      font-size: 17px;
-      color: var(--text-muted);
-      max-width: 580px;
-      margin: 0 auto 36px;
-      line-height: 1.7;
-    }
+    /* SOCIAL PROOF BAR */
+    .proof{text-align:center;padding:32px 0;border-bottom:1px solid var(--border)}
+    .proof-text{font-size:13px;color:var(--text2);display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap}
+    .proof-text strong{color:var(--text)}
+    .logos{display:flex;justify-content:center;align-items:center;gap:28px;margin-top:14px;flex-wrap:wrap}
+    .logos span{font-size:13px;font-weight:700;color:var(--text2);opacity:.7;letter-spacing:.5px}
 
-    /* === CTA BUTTON === */
-    .cta-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--red);
-      color: white;
-      padding: 16px 36px;
-      border-radius: 12px;
-      font-size: 17px;
-      font-weight: 700;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-      transition: all 0.25s;
-      box-shadow: 0 4px 24px rgba(220, 38, 38, 0.35);
-    }
-    .cta-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 32px rgba(220, 38, 38, 0.45);
-    }
-    .cta-sub {
-      display: block;
-      margin-top: 12px;
-      font-size: 13px;
-      color: var(--text-dim);
-    }
+    /* ALERT CASE */
+    .alert-case{background:var(--bg2);border:1px solid var(--border);border-left:4px solid var(--red);border-radius:var(--radius);padding:28px 28px 24px;margin:48px auto;max-width:780px}
+    .alert-case h3{font-size:18px;font-weight:700;margin-bottom:10px}
+    .alert-case p{color:var(--text2);font-size:14px;line-height:1.7}
+    .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+    .stat{background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.1);border-radius:8px;padding:14px;text-align:center}
+    .stat .v{font-size:22px;font-weight:800;color:var(--red)}
+    .stat .lb{font-size:11px;color:var(--text2);margin-top:2px}
 
-    /* === COUNTDOWN === */
-    .countdown-section {
-      padding: 0 24px 48px;
-    }
-    .countdown {
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-      margin-top: 32px;
-    }
-    .countdown-box {
-      background: var(--dark-card);
-      border: 1px solid var(--dark-border);
-      border-radius: 12px;
-      padding: 16px 20px;
-      min-width: 80px;
-      text-align: center;
-    }
-    .countdown-num {
-      font-size: 32px;
-      font-weight: 800;
-      color: #fff;
-      font-variant-numeric: tabular-nums;
-      letter-spacing: -0.02em;
-    }
-    .countdown-label {
-      font-size: 11px;
-      color: var(--text-dim);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-top: 4px;
-    }
+    /* SECTION */
+    .section{padding:56px 0}
+    .stag{text-align:center;font-size:12px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:2px;margin-bottom:6px}
+    .sh{text-align:center;font-size:28px;font-weight:800;margin-bottom:40px;letter-spacing:-.5px}
 
-    /* === CASE SECTION === */
-    .case-section {
-      max-width: 700px;
-      margin: 0 auto;
-      padding: 48px 24px;
-      border-top: 1px solid var(--dark-border);
-    }
-    .case-card {
-      background: linear-gradient(135deg, rgba(220, 38, 38, 0.08), rgba(220, 38, 38, 0.02));
-      border: 1px solid rgba(220, 38, 38, 0.15);
-      border-radius: 16px;
-      padding: 32px;
-    }
-    .case-icon {
-      font-size: 28px;
-      margin-bottom: 16px;
-    }
-    .case-card h3 {
-      font-size: 20px;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 12px;
-      line-height: 1.3;
-    }
-    .case-card p {
-      font-size: 15px;
-      color: var(--text-muted);
-      line-height: 1.7;
-    }
-    .case-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-top: 24px;
-    }
-    .case-stat {
-      text-align: center;
-      padding: 12px;
-      background: rgba(0,0,0,0.3);
-      border-radius: 10px;
-    }
-    .case-stat-num {
-      font-size: 22px;
-      font-weight: 800;
-      color: var(--red);
-    }
-    .case-stat-label {
-      font-size: 11px;
-      color: var(--text-dim);
-      margin-top: 4px;
-    }
+    /* SPEAKERS */
+    .speakers{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+    .sp-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:24px 20px;display:flex;gap:16px;align-items:flex-start;transition:all .25s}
+    .sp-card:hover{border-color:rgba(239,68,68,.2);transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.25)}
+    .sp-card.mod{border-color:rgba(59,130,246,.15);background:linear-gradient(135deg,rgba(59,130,246,.04),var(--bg2) 60%)}
+    .sp-card.mod:hover{border-color:rgba(59,130,246,.3)}
+    .sp-img{width:72px;height:72px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid var(--border)}
+    .sp-card.mod .sp-img{border-color:rgba(59,130,246,.3)}
+    .sp-badge{display:inline-block;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;padding:3px 8px;border-radius:10px;margin-bottom:6px}
+    .sp-badge.red{background:rgba(239,68,68,.12);color:var(--red)}
+    .sp-badge.blue{background:rgba(59,130,246,.12);color:var(--blue)}
+    .sp-badge.green{background:rgba(34,197,94,.12);color:var(--green)}
+    .sp-name{font-size:15px;font-weight:700;margin-bottom:2px}
+    .sp-role{font-size:12px;color:var(--red);font-weight:600;margin-bottom:6px}
+    .sp-card.mod .sp-role{color:var(--blue)}
+    .sp-bio{font-size:12px;color:var(--text2);line-height:1.55}
 
-    /* === SPEAKERS === */
-    .speakers-section {
-      max-width: 700px;
-      margin: 0 auto;
-      padding: 48px 24px;
-      border-top: 1px solid var(--dark-border);
-    }
-    .section-label {
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--text-dim);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      text-align: center;
-      margin-bottom: 12px;
-    }
-    .section-title {
-      font-size: 26px;
-      font-weight: 800;
-      color: #fff;
-      text-align: center;
-      margin-bottom: 36px;
-      letter-spacing: -0.02em;
-    }
+    /* MID CTA */
+    .mid-cta{text-align:center;padding:36px 0}
 
-    .speaker-card {
-      display: flex;
-      gap: 20px;
-      align-items: flex-start;
-      background: var(--dark-card);
-      border: 1px solid var(--dark-border);
-      border-radius: 16px;
-      padding: 24px;
-      margin-bottom: 16px;
-      transition: border-color 0.2s;
-    }
-    .speaker-card:hover { border-color: rgba(220, 38, 38, 0.3); }
+    /* AGENDA */
+    .agenda{max-width:640px;margin:0 auto}
+    .ag-item{display:flex;gap:20px;padding:20px 0;border-bottom:1px solid var(--border)}
+    .ag-item:last-child{border-bottom:none}
+    .ag-time{font-size:14px;font-weight:700;color:var(--red);min-width:50px;padding-top:1px}
+    .ag-title{font-size:15px;font-weight:700;margin-bottom:3px}
+    .ag-desc{font-size:13px;color:var(--text2)}
 
-    .speaker-avatar {
-      width: 80px;
-      height: 80px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, var(--red-glow), rgba(108, 92, 231, 0.1));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 28px;
-      flex-shrink: 0;
-      overflow: hidden;
-    }
-    .speaker-avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .speaker-info h4 {
-      font-size: 17px;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 4px;
-    }
-    .speaker-role {
-      font-size: 14px;
-      color: var(--amber);
-      font-weight: 500;
-      margin-bottom: 8px;
-    }
-    .speaker-bio {
-      font-size: 14px;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
+    /* AUDIENCE */
+    .aud-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:640px;margin:0 auto}
+    .aud-item{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:18px 14px;text-align:center;font-size:13px;font-weight:500}
+    .aud-icon{font-size:24px;display:block;margin-bottom:6px}
 
-    /* === AGENDA === */
-    .agenda-section {
-      max-width: 700px;
-      margin: 0 auto;
-      padding: 48px 24px;
-      border-top: 1px solid var(--dark-border);
-    }
-    .agenda-item {
-      display: flex;
-      gap: 16px;
-      padding: 20px 0;
-      border-bottom: 1px solid var(--dark-border);
-    }
-    .agenda-time {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--red);
-      min-width: 60px;
-      font-variant-numeric: tabular-nums;
-    }
-    .agenda-content h4 {
-      font-size: 15px;
-      font-weight: 600;
-      color: #fff;
-      margin-bottom: 4px;
-    }
-    .agenda-content p {
-      font-size: 13px;
-      color: var(--text-muted);
-    }
+    /* FINAL CTA */
+    .final{text-align:center;padding:64px 0 32px}
+    .final h2{font-size:32px;font-weight:900;margin-bottom:10px;letter-spacing:-.5px}
+    .final p{color:var(--text2);font-size:15px;margin-bottom:28px;max-width:480px;margin-left:auto;margin-right:auto}
 
-    /* === FOR WHO === */
-    .for-section {
-      max-width: 700px;
-      margin: 0 auto;
-      padding: 48px 24px;
-      border-top: 1px solid var(--dark-border);
-    }
-    .for-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 12px;
-      margin-top: 24px;
-    }
-    .for-item {
-      background: var(--dark-card);
-      border: 1px solid var(--dark-border);
-      border-radius: 12px;
-      padding: 20px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .for-icon { font-size: 22px; }
-    .for-text {
-      font-size: 14px;
-      color: var(--text);
-      font-weight: 500;
-    }
+    /* FOOTER */
+    .footer{text-align:center;padding:28px 0;border-top:1px solid var(--border);font-size:12px;color:var(--text2)}
 
-    /* === FINAL CTA === */
-    .final-cta {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 64px 24px;
-      text-align: center;
-      border-top: 1px solid var(--dark-border);
-    }
-    .final-cta h2 {
-      font-size: 28px;
-      font-weight: 800;
-      color: #fff;
-      margin-bottom: 16px;
-      letter-spacing: -0.02em;
-    }
-    .final-cta p {
-      font-size: 15px;
-      color: var(--text-muted);
-      margin-bottom: 32px;
-    }
-    .guarantee {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      margin-top: 20px;
-      font-size: 14px;
-      color: var(--green);
-    }
+    /* STICKY */
+    .sticky{position:fixed;bottom:0;left:0;right:0;background:rgba(9,9,11,.92);backdrop-filter:blur(12px);border-top:1px solid var(--border);padding:10px 20px;display:flex;justify-content:center;align-items:center;gap:16px;z-index:100}
+    .sticky-text{font-size:13px;font-weight:500}
+    .sticky-text .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--red);animation:blink 1.5s infinite;margin-right:4px}
 
-    /* === FOOTER === */
-    .footer {
-      text-align: center;
-      padding: 32px 24px;
-      border-top: 1px solid var(--dark-border);
-      font-size: 13px;
-      color: var(--text-dim);
-    }
-
-    /* === MOBILE === */
-    @media (max-width: 600px) {
-      .hero { padding: 40px 20px 32px; }
-      .case-stats { grid-template-columns: 1fr; }
-      .speaker-card { flex-direction: column; align-items: center; text-align: center; }
-      .countdown { gap: 8px; }
-      .countdown-box { min-width: 65px; padding: 12px 14px; }
-      .countdown-num { font-size: 24px; }
-      .for-grid { grid-template-columns: 1fr; }
-      .cta-btn { width: 100%; justify-content: center; padding: 16px 24px; }
-    }
-
-    /* === FLOATING CTA (mobile) === */
-    .floating-cta {
-      display: none;
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 12px 16px;
-      background: rgba(10, 10, 15, 0.95);
-      backdrop-filter: blur(12px);
-      border-top: 1px solid var(--dark-border);
-      z-index: 90;
-    }
-    .floating-cta .cta-btn {
-      width: 100%;
-      justify-content: center;
-      font-size: 15px;
-      padding: 14px;
-    }
-    @media (max-width: 768px) {
-      .floating-cta { display: block; }
-      .footer { padding-bottom: 80px; }
+    @media(max-width:680px){
+      .speakers{grid-template-columns:1fr}
+      .sp-card{flex-direction:column;align-items:center;text-align:center}
+      .stats-row{grid-template-columns:1fr}
+      .aud-grid{grid-template-columns:repeat(2,1fr)}
+      .sticky-text{display:none}
+      .cd-box{min-width:60px;padding:10px 12px}
+      .cd-box .n{font-size:22px}
     }
   </style>
 </head>
 <body>
 
-  <!-- Alert Bar -->
-  <div class="alert-bar">
-    🔴 Vagas limitadas — <span>Webinar gratuito, 17 de março às 11h</span>
-  </div>
+<!-- URGENCY BAR -->
+<div class="urgency"><span>🔴 Vagas limitadas — 17 de março às 11h (Brasília) — Inscrição gratuita</span></div>
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="badge">Webinar Ao Vivo · 17 de Março</div>
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="pill"><span class="dot"></span> Webinar Ao Vivo · 17 de Março · 11h BRT</div>
     <h1>Se um ransomware travasse seus sistemas <em>amanhã</em>, sua UTI operaria?</h1>
     <p class="hero-sub">
-      Especialistas de segurança hospitalar revelam as estratégias reais que protegem operações críticas quando tudo digital para de funcionar.
+      Especialistas do <strong>Hospital Albert Einstein</strong>, <strong>HID Global</strong> e <strong>Hospital Santa Rita</strong> revelam as estratégias reais que protegem operações críticas quando tudo digital para de funcionar.
     </p>
-    <a href="https://register.gotowebinar.com/register/4678901816620353883" class="cta-btn" id="hero-cta">
-      Garantir Minha Vaga →
-    </a>
-    <span class="cta-sub">✓ Gratuito · ✓ Online · ✓ 90 minutos · ✓ Com certificado</span>
-    
-    <!-- Countdown -->
-    <div class="countdown" id="countdown">
-      <div class="countdown-box">
-        <div class="countdown-num" id="cd-days">--</div>
-        <div class="countdown-label">Dias</div>
-      </div>
-      <div class="countdown-box">
-        <div class="countdown-num" id="cd-hours">--</div>
-        <div class="countdown-label">Horas</div>
-      </div>
-      <div class="countdown-box">
-        <div class="countdown-num" id="cd-mins">--</div>
-        <div class="countdown-label">Min</div>
-      </div>
-      <div class="countdown-box">
-        <div class="countdown-num" id="cd-secs">--</div>
-        <div class="countdown-label">Seg</div>
-      </div>
+    <a href="https://register.gotowebinar.com/register/4678901816620353883" class="cta">Garantir Minha Vaga →</a>
+    <div class="meta">
+      <span>✓ Gratuito</span>
+      <span>✓ Online ao vivo</span>
+      <span>✓ 90 minutos</span>
+      <span>✓ Com certificado</span>
     </div>
-  </section>
+    <div class="cd-row">
+      <div class="cd-box"><span class="n" id="d">--</span><span class="l">Dias</span></div>
+      <div class="cd-box"><span class="n" id="h">--</span><span class="l">Horas</span></div>
+      <div class="cd-box"><span class="n" id="m">--</span><span class="l">Min</span></div>
+      <div class="cd-box"><span class="n" id="s">--</span><span class="l">Seg</span></div>
+    </div>
+  </div>
+</section>
 
-  <!-- Case -->
-  <section class="case-section">
-    <div class="case-card">
-      <div class="case-icon">⚠️</div>
-      <h3>Em 2023, um hospital brasileiro ficou refém de hackers por 4 dias.</h3>
-      <p>
-        Todos os sistemas digitais travados. Prontuários inacessíveis. Cirurgias canceladas. 
-        A equipe voltou para papel e caneta enquanto negociava com criminosos. 
-        O que salvou parte da operação foi ter credenciais físicas como backup.
-      </p>
-      <div class="case-stats">
-        <div class="case-stat">
-          <div class="case-stat-num">4 dias</div>
-          <div class="case-stat-label">Sistemas fora</div>
+<!-- SOCIAL PROOF -->
+<div class="proof">
+  <div class="wrap">
+    <div class="proof-text">Profissionais dessas instituições já confirmaram presença:</div>
+    <div class="logos">
+      <span>HOSPITAL EINSTEIN</span>
+      <span>HID GLOBAL</span>
+      <span>HOSPITAL SANTA RITA</span>
+      <span>HOSPITAL SÍRIO-LIBANÊS</span>
+      <span>HOSPITAL PUC CAMPINAS</span>
+    </div>
+  </div>
+</div>
+
+<!-- ALERT CASE -->
+<div class="wrap">
+  <div class="alert-case">
+    <h3>⚠️ Em 2023, um hospital brasileiro ficou refém de hackers por 4 dias.</h3>
+    <p>Todos os sistemas digitais travados. Prontuários inacessíveis. Cirurgias canceladas. A equipe voltou para papel e caneta enquanto negociava com criminosos. O que salvou parte da operação foi ter credenciais físicas como backup.</p>
+    <div class="stats-row">
+      <div class="stat"><div class="v">4 dias</div><div class="lb">Sistemas fora do ar</div></div>
+      <div class="stat"><div class="v">100%</div><div class="lb">Cirurgias pausadas</div></div>
+      <div class="stat"><div class="v">R$ MM</div><div class="lb">Prejuízo estimado</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SPEAKERS -->
+<section class="section">
+  <div class="wrap">
+    <div class="stag">Quem vai participar</div>
+    <div class="sh">Speakers & Moderadora</div>
+    <div class="speakers">
+
+      <!-- MODERADORA -->
+      <div class="sp-card mod">
+        <img src="thalita.jpeg" alt="Thalita Lellice" class="sp-img">
+        <div>
+          <div class="sp-badge blue">Moderadora</div>
+          <div class="sp-name">Thalita Lellice Morais Campelo</div>
+          <div class="sp-role">Especialista em Arquitetura Hospitalar</div>
+          <p class="sp-bio">Ex-Vice-Presidenta Executiva da ABDEH. Mestre em arquitetura e urbanismo com foco em saúde. Consultora com 15+ anos em infraestrutura hospitalar e monitoramento de 60+ obras na rede pública brasileira.</p>
         </div>
-        <div class="case-stat">
-          <div class="case-stat-num">100%</div>
-          <div class="case-stat-label">Cirurgias pausadas</div>
+      </div>
+
+      <!-- CHRISTOOFER -->
+      <div class="sp-card">
+        <img src="christoofer.jpeg" alt="Christoofer Zaluski" class="sp-img">
+        <div>
+          <div class="sp-badge green">Guest Speaker · Novo</div>
+          <div class="sp-name">Christoofer Zaluski, MBA</div>
+          <div class="sp-role">Head de TI — Hospital Israelita Albert Einstein</div>
+          <p class="sp-bio">Líder de tecnologia, produtos e dados em uma das instituições de saúde mais prestigiadas da América Latina. Visão estratégica em transformação digital na saúde.</p>
         </div>
-        <div class="case-stat">
-          <div class="case-stat-num">R$ MM</div>
-          <div class="case-stat-label">Prejuízo estimado</div>
+      </div>
+
+      <!-- DEBORAH -->
+      <div class="sp-card">
+        <img src="deborah_foto.jpeg" alt="Deborah Pignatari Nardy" class="sp-img">
+        <div>
+          <div class="sp-badge red">Speaker</div>
+          <div class="sp-name">Deborah Pignatari Nardy</div>
+          <div class="sp-role">Regional Sales Manager — HID Global Brasil</div>
+          <p class="sp-bio">Especialista em soluções de identidade segura e controle de acesso físico para ambientes críticos. Linha de frente da convergência entre segurança física e digital.</p>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- Speakers -->
-  <section class="speakers-section">
-    <div class="section-label">Quem vai apresentar</div>
-    <div class="section-title">Speakers Confirmados</div>
-    
-    <div class="speaker-card">
-      <div class="speaker-avatar"><img src="deborah_foto.jpeg" alt="Deborah Pignatari Nardy"></div>
-      <div class="speaker-info">
-        <h4>Deborah Pignatari Nardy</h4>
-        <div class="speaker-role">Regional Sales Manager — HID Global Brasil</div>
-        <p class="speaker-bio">
-          Especialista em soluções de identidade segura e controle de acesso físico para ambientes críticos. 
-          Atua na linha de frente da convergência entre segurança física e digital em hospitais.
-        </p>
+      <!-- ANSELMO -->
+      <div class="sp-card">
+        <img src="anselmo.jpeg" alt="Anselmo Antunes de Carvalho" class="sp-img">
+        <div>
+          <div class="sp-badge red">Speaker</div>
+          <div class="sp-name">Anselmo Antunes de Carvalho</div>
+          <div class="sp-role">Gerente de TI — Hospital Santa Rita SP</div>
+          <p class="sp-bio">Gerencia a infraestrutura de TI de um dos principais hospitais de São Paulo. Experiência real em proteger sistemas hospitalares contra ameaças cibernéticas.</p>
+        </div>
       </div>
+
     </div>
 
-    <div class="speaker-card">
-      <div class="speaker-avatar"><img src="anselmo.jpeg" alt="Anselmo Antunes de Carvalho"></div>
-      <div class="speaker-info">
-        <h4>Anselmo Antunes de Carvalho</h4>
-        <div class="speaker-role">Gerente de TI — Hospital Santa Rita SP</div>
-        <p class="speaker-bio">
-          Gerencia a infraestrutura de TI de um dos principais hospitais de São Paulo. 
-          Experiência real em proteger sistemas hospitalares contra ameaças cibernéticas no dia a dia.
-        </p>
-      </div>
+    <div class="mid-cta">
+      <a href="https://register.gotowebinar.com/register/4678901816620353883" class="cta">Garantir Minha Vaga →</a>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Agenda -->
-  <section class="agenda-section">
-    <div class="section-label">O que vamos cobrir</div>
-    <div class="section-title">Agenda do Webinar</div>
-    
-    <div class="agenda-item">
-      <div class="agenda-time">11:00</div>
-      <div class="agenda-content">
-        <h4>Abertura e contexto</h4>
-        <p>O cenário atual de ciberataques em hospitais brasileiros</p>
+<!-- AGENDA -->
+<section class="section" style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="stag">O que vamos cobrir</div>
+    <div class="sh">Agenda do Webinar</div>
+    <div class="agenda">
+      <div class="ag-item">
+        <div class="ag-time">11:00</div>
+        <div><div class="ag-title">Abertura e contexto</div><div class="ag-desc">O cenário atual de ciberataques em hospitais brasileiros — por que 2026 é o ano mais crítico.</div></div>
+      </div>
+      <div class="ag-item">
+        <div class="ag-time">11:15</div>
+        <div><div class="ag-title">Caso real: Ransomware em hospital brasileiro</div><div class="ag-desc">O que aconteceu, o que falhou, e o que salvou a operação — com a perspectiva de quem vive o dia a dia hospitalar.</div></div>
+      </div>
+      <div class="ag-item">
+        <div class="ag-time">11:35</div>
+        <div><div class="ag-title">Credenciais físicas como último recurso</div><div class="ag-desc">Como montar uma estratégia de continuidade operacional que funciona quando tudo digital falha.</div></div>
+      </div>
+      <div class="ag-item">
+        <div class="ag-time">11:55</div>
+        <div><div class="ag-title">Convergência: segurança física + digital + infraestrutura</div><div class="ag-desc">A visão da HID Global, do Einstein e a perspectiva da arquitetura hospitalar para 2026.</div></div>
+      </div>
+      <div class="ag-item">
+        <div class="ag-time">12:10</div>
+        <div><div class="ag-title">Perguntas & Respostas ao vivo</div><div class="ag-desc">Sessão aberta com todos os painelistas. Traga suas dúvidas.</div></div>
       </div>
     </div>
-    <div class="agenda-item">
-      <div class="agenda-time">11:15</div>
-      <div class="agenda-content">
-        <h4>Caso real: Ransomware em hospital brasileiro</h4>
-        <p>O que aconteceu, o que falhou, e o que salvou a operação</p>
-      </div>
-    </div>
-    <div class="agenda-item">
-      <div class="agenda-time">11:35</div>
-      <div class="agenda-content">
-        <h4>Credenciais físicas como backup digital</h4>
-        <p>Como montar uma estratégia de continuidade operacional</p>
-      </div>
-    </div>
-    <div class="agenda-item">
-      <div class="agenda-time">11:55</div>
-      <div class="agenda-content">
-        <h4>Convergência: segurança física + digital</h4>
-        <p>A visão da HID Global para hospitais em 2026</p>
-      </div>
-    </div>
-    <div class="agenda-item">
-      <div class="agenda-time">12:10</div>
-      <div class="agenda-content">
-        <h4>Perguntas & Respostas</h4>
-        <p>Sessão aberta com os dois painelistas</p>
-      </div>
-    </div>
-  </section>
+  </div>
+</section>
 
-  <!-- For who -->
-  <section class="for-section">
-    <div class="section-label">Para quem é este webinar</div>
-    <div class="section-title">Ideal para você se trabalha com:</div>
-    <div class="for-grid">
-      <div class="for-item">
-        <span class="for-icon">🏥</span>
-        <span class="for-text">Gestão de TI hospitalar</span>
-      </div>
-      <div class="for-item">
-        <span class="for-icon">🔒</span>
-        <span class="for-text">Segurança da informação</span>
-      </div>
-      <div class="for-item">
-        <span class="for-icon">⚕️</span>
-        <span class="for-text">Administração hospitalar</span>
-      </div>
-      <div class="for-item">
-        <span class="for-icon">🛡️</span>
-        <span class="for-text">Compliance em saúde</span>
-      </div>
-      <div class="for-item">
-        <span class="for-icon">🔑</span>
-        <span class="for-text">Controle de acesso físico</span>
-      </div>
-      <div class="for-item">
-        <span class="for-icon">📋</span>
-        <span class="for-text">Gestão de riscos</span>
-      </div>
+<!-- AUDIENCE -->
+<section class="section">
+  <div class="wrap">
+    <div class="stag">Para quem é este webinar</div>
+    <div class="sh">Ideal para profissionais de:</div>
+    <div class="aud-grid">
+      <div class="aud-item"><span class="aud-icon">🏥</span>Gestão de TI Hospitalar</div>
+      <div class="aud-item"><span class="aud-icon">🔒</span>Segurança da Informação</div>
+      <div class="aud-item"><span class="aud-icon">⚕️</span>Administração Hospitalar</div>
+      <div class="aud-item"><span class="aud-icon">🛡️</span>Compliance & LGPD</div>
+      <div class="aud-item"><span class="aud-icon">🔑</span>Controle de Acesso</div>
+      <div class="aud-item"><span class="aud-icon">📋</span>Gestão de Riscos</div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Final CTA -->
-  <section class="final-cta">
+<!-- FINAL CTA -->
+<section class="final">
+  <div class="wrap">
     <h2>Não espere o ataque acontecer.</h2>
-    <p>
-      90 minutos que podem salvar milhões em prejuízos 
-      e — mais importante — vidas que dependem de sistemas funcionando.
-    </p>
-    <a href="https://register.gotowebinar.com/register/4678901816620353883" class="cta-btn">
-      Garantir Minha Vaga Agora →
-    </a>
-    <div class="guarantee">
-      <span>✓</span> 100% gratuito — sem compromisso
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <div class="footer">
-    <p>Organizado por Limitless Media · © 2026</p>
-    <p style="margin-top: 4px;">17 de março, 2026 · 11h às 12h30 (horário de Brasília)</p>
+    <p>90 minutos que podem salvar milhões em prejuízos — e vidas que dependem de sistemas funcionando.</p>
+    <a href="https://register.gotowebinar.com/register/4678901816620353883" class="cta">Garantir Minha Vaga Agora →</a>
+    <div class="meta" style="margin-top:10px"><span>✓ 100% gratuito — sem compromisso</span></div>
   </div>
+</section>
 
-  <!-- Floating CTA mobile -->
-  <div class="floating-cta">
-    <a href="https://register.gotowebinar.com/register/4678901816620353883" class="cta-btn">
-      Garantir Minha Vaga →
-    </a>
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <p>Organizado por <strong>Limitless Media</strong> · © 2026</p>
+    <p style="margin-top:6px">17 de março, 2026 · 11h às 12h30 (horário de Brasília)</p>
   </div>
+</footer>
 
-  <script>
-    // Countdown to March 17, 2026 at 11:00 BRT (UTC-3)
-    function updateCountdown() {
-      const target = new Date('2026-03-17T14:00:00Z'); // 11:00 BRT = 14:00 UTC
-      const now = new Date();
-      const diff = target - now;
+<!-- STICKY BAR -->
+<div class="sticky">
+  <span class="sticky-text"><span class="dot"></span> 17 de março · 11h BRT · Vagas limitadas</span>
+  <a href="https://register.gotowebinar.com/register/4678901816620353883" class="cta cta-sm">Garantir Minha Vaga →</a>
+</div>
 
-      if (diff <= 0) {
-        document.getElementById('cd-days').textContent = '0';
-        document.getElementById('cd-hours').textContent = '0';
-        document.getElementById('cd-mins').textContent = '0';
-        document.getElementById('cd-secs').textContent = '0';
-        return;
-      }
+<!-- COUNTDOWN -->
+<script>
+!function(){
+  var t=new Date("2026-03-17T14:00:00Z");
+  function u(){
+    var n=t-new Date();
+    if(n<=0)return void["d","h","m","s"].forEach(function(i){document.getElementById(i).textContent="0"});
+    document.getElementById("d").textContent=Math.floor(n/864e5);
+    document.getElementById("h").textContent=Math.floor(n%864e5/36e5);
+    document.getElementById("m").textContent=String(Math.floor(n%36e5/6e4)).padStart(2,"0");
+    document.getElementById("s").textContent=String(Math.floor(n%6e4/1e3)).padStart(2,"0");
+  }
+  u();setInterval(u,1e3);
+}();
+</script>
 
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const secs = Math.floor((diff % (1000 * 60)) / 1000);
-
-      document.getElementById('cd-days').textContent = days;
-      document.getElementById('cd-hours').textContent = hours.toString().padStart(2, '0');
-      document.getElementById('cd-mins').textContent = mins.toString().padStart(2, '0');
-      document.getElementById('cd-secs').textContent = secs.toString().padStart(2, '0');
-    }
-
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-
-    // Track CTA clicks (you can replace with real analytics)
-    document.querySelectorAll('.cta-btn').forEach(btn => {
-      btn.addEventListener('click', function() {
-        if (typeof gtag !== 'undefined') {
-          gtag('event', 'click', { event_category: 'CTA', event_label: 'webinar_register' });
-        }
-      });
-    });
-  </script>
 </body>
 </html>
