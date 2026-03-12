@@ -20,60 +20,102 @@
       --hid-dark:#0D2B5E;--hid-navy:#091C3E;
       --hid-orange:#E8912D;--hid-yellow:#F2C94C;
       --hid-green:#4CAF50;
-      --border:rgba(26,86,168,0.15);
+      --border:rgba(26,86,168,0.18);
       --radius:10px;
     }
     body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;padding-bottom:80px}
     a{color:inherit;text-decoration:none}
 
-    /* Logo bar */
+    /* ===== LOGO BAR ===== */
     .logo-bar{display:flex;align-items:center;justify-content:center;gap:20px;padding:20px 20px 16px;position:relative;z-index:10}
-    .logo-bar img.hid-logo{height:36px;border-radius:3px}
-    .logo-bar .logo-sep{width:1px;height:28px;background:rgba(255,255,255,0.15)}
+    .logo-bar img.hid-logo{height:40px;border-radius:3px}
+    .logo-bar .logo-sep{width:1.5px;height:30px;background:rgba(255,255,255,0.2)}
     .logo-bar img.lm-logo{height:18px;opacity:.85}
 
-    /* HID Blue urgency bar */
-    .urgency{background:var(--hid-blue);text-align:center;padding:12px 16px;font-size:13px;font-weight:600;letter-spacing:.3px;position:sticky;top:0;z-index:100;color:#fff}
+    /* ===== ORANGE URGENCY BAR ===== */
+    .urgency{background:var(--hid-orange);text-align:center;padding:12px 16px;font-size:13px;font-weight:700;letter-spacing:.3px;position:sticky;top:0;z-index:100;color:#fff;text-transform:uppercase}
     .urgency span{animation:pulse 2s ease-in-out infinite}
-    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.7}}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.8}}
 
     .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
 
-    /* Hero */
-    .hero{padding:72px 0 48px;text-align:center;position:relative;overflow:hidden}
-    .hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:700px;height:500px;background:radial-gradient(ellipse,rgba(26,86,168,0.12),transparent 70%);pointer-events:none}
-    /* Decorative brace pattern - left */
-    .hero::after{
-      content:'}  }  }  }  }  }  }  }  }  }  }  }  }  }  }  }  }  }  }  }  }  }  }  }  }  }  }  }  }  }';
-      position:absolute;top:0;left:-20px;width:280px;height:100%;
-      font-size:24px;line-height:30px;letter-spacing:6px;
-      color:rgba(26,86,168,0.05);word-break:break-all;overflow:hidden;
-      pointer-events:none;
+    /* ===== HERO — FULL PHOTOGRAPHY BACKGROUND ===== */
+    .hero{
+      padding:0;text-align:center;
+      position:relative;overflow:hidden;
+      min-height:600px;
+      display:flex;align-items:center;justify-content:center;
     }
-    .hero>*{position:relative}
+    .hero .hero-bg{
+      position:absolute;top:0;left:0;width:100%;height:100%;
+      background:url('AdobeStock_1431011167.jpg') center center / cover no-repeat;
+      z-index:0;
+    }
+    .hero .hero-overlay{
+      position:absolute;top:0;left:0;width:100%;height:100%;
+      background:linear-gradient(180deg,
+        rgba(9,28,62,0.92) 0%,
+        rgba(9,28,62,0.80) 40%,
+        rgba(9,28,62,0.70) 70%,
+        rgba(9,28,62,0.90) 100%
+      );
+      z-index:1;
+    }
+    /* Bold graphic curve overlays — HID signature */
+    .hero .hero-curve-1{
+      position:absolute;top:-200px;right:-200px;
+      width:700px;height:700px;
+      border:4px solid rgba(232,145,45,0.30);
+      border-radius:50%;z-index:2;pointer-events:none;
+    }
+    .hero .hero-curve-2{
+      position:absolute;bottom:-300px;left:-150px;
+      width:600px;height:600px;
+      border:3px solid rgba(26,86,168,0.25);
+      border-radius:50%;z-index:2;pointer-events:none;
+    }
+    .hero .hero-curve-3{
+      position:absolute;top:150px;right:-350px;
+      width:550px;height:550px;
+      border:2px solid rgba(232,145,45,0.12);
+      border-radius:50%;z-index:2;pointer-events:none;
+    }
+    /* Left accent bar */
+    .hero .hero-accent-left{
+      position:absolute;top:0;left:0;bottom:0;width:6px;
+      background:linear-gradient(180deg,var(--hid-orange),var(--hid-blue));
+      z-index:5;
+    }
+    .hero .hero-accent-bottom{
+      position:absolute;bottom:0;left:0;right:0;height:4px;
+      background:linear-gradient(90deg,var(--hid-orange) 0%,var(--hid-orange) 40%,var(--hid-blue) 100%);
+      z-index:5;
+    }
+    .hero-content{position:relative;z-index:3;padding:72px 20px 56px;max-width:900px}
 
-    /* HID-branded pill */
-    .pill{display:inline-flex;align-items:center;gap:6px;background:rgba(26,86,168,0.12);border:1px solid rgba(26,86,168,0.25);padding:6px 14px;border-radius:20px;font-size:12px;font-weight:600;color:var(--hid-light);margin-bottom:20px}
-    .pill .dot{width:6px;height:6px;border-radius:50%;background:var(--hid-orange);animation:blink 1.5s infinite}
+    .pill{display:inline-flex;align-items:center;gap:8px;background:rgba(232,145,45,0.15);border:1.5px solid rgba(232,145,45,0.5);padding:8px 18px;border-radius:4px;font-size:12px;font-weight:700;color:var(--hid-orange);margin-bottom:24px;text-transform:uppercase;letter-spacing:2px}
+    .pill .dot{width:7px;height:7px;border-radius:50%;background:var(--hid-orange);animation:blink 1.5s infinite}
     @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
 
-    h1{font-size:clamp(30px,5vw,48px);font-weight:300;line-height:1.1;letter-spacing:-1px;margin-bottom:18px;max-width:800px;margin-left:auto;margin-right:auto}
-    h1 em{font-style:normal;color:var(--hid-orange);font-weight:600}
+    h1{font-size:clamp(30px,5vw,52px);font-weight:300;line-height:1.1;letter-spacing:-1px;margin-bottom:20px;max-width:800px;margin-left:auto;margin-right:auto}
+    h1 em{font-style:normal;color:var(--hid-orange);font-weight:700}
 
-    .hero-sub{font-size:17px;color:var(--text2);max-width:640px;margin:0 auto 28px;line-height:1.65;font-weight:300}
-    .hero-sub strong{color:var(--text);font-weight:600}
+    .hero-sub{font-size:17px;color:rgba(255,255,255,0.7);max-width:640px;margin:0 auto 28px;line-height:1.65;font-weight:300}
+    .hero-sub strong{color:#fff;font-weight:600}
 
-    /* HID-branded CTA */
-    .cta{display:inline-flex;align-items:center;gap:8px;background:var(--hid-blue);color:#fff;padding:15px 36px;border-radius:6px;font-size:16px;font-weight:700;transition:all .2s;border:none;cursor:pointer;letter-spacing:.3px}
-    .cta:hover{background:var(--hid-medium);transform:translateY(-2px);box-shadow:0 8px 32px rgba(26,86,168,.3)}
+    /* Orange CTA */
+    .cta{display:inline-flex;align-items:center;gap:8px;background:var(--hid-orange);color:#fff;padding:16px 40px;border-radius:6px;font-size:16px;font-weight:700;transition:all .2s;border:none;cursor:pointer;letter-spacing:.5px;text-transform:uppercase}
+    .cta:hover{background:#D4801F;transform:translateY(-2px);box-shadow:0 8px 32px rgba(232,145,45,.35)}
+    .cta-blue{background:var(--hid-blue)}
+    .cta-blue:hover{background:var(--hid-medium);box-shadow:0 8px 32px rgba(26,86,168,.35)}
     .cta-sm{padding:11px 24px;font-size:14px}
-    .meta{margin-top:10px;font-size:12px;color:var(--text2);display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+    .meta{margin-top:12px;font-size:12px;color:rgba(255,255,255,0.5);display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
 
     /* Countdown */
     .cd-row{display:flex;justify-content:center;gap:12px;margin:36px 0 0}
-    .cd-box{background:rgba(26,86,168,0.08);border:1px solid var(--border);border-radius:10px;padding:14px 18px;min-width:72px;text-align:center}
+    .cd-box{background:rgba(26,86,168,0.15);border:1px solid rgba(26,86,168,0.3);border-radius:10px;padding:14px 18px;min-width:72px;text-align:center}
     .cd-box .n{font-size:28px;font-weight:800;color:var(--hid-orange);display:block;line-height:1.1}
-    .cd-box .l{font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:1px;margin-top:2px}
+    .cd-box .l{font-size:10px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:1px;margin-top:2px}
 
     /* Proof bar */
     .proof{text-align:center;padding:32px 0;border-bottom:1px solid var(--border)}
@@ -82,34 +124,53 @@
     .logos{display:flex;justify-content:center;align-items:center;gap:20px;margin-top:14px;flex-wrap:wrap}
     .logos span{font-size:12px;font-weight:700;color:var(--hid-light);opacity:.7;letter-spacing:.5px}
 
-    /* Alert case */
-    .alert-case{background:rgba(26,86,168,0.06);border:1px solid var(--border);border-left:4px solid var(--hid-orange);border-radius:var(--radius);padding:28px 28px 24px;margin:48px auto;max-width:780px}
+    /* Alert case — with stock photo peek */
+    .alert-section{position:relative;overflow:hidden;margin:0}
+    .alert-section .alert-bg{
+      position:absolute;top:0;left:0;width:100%;height:100%;
+      background:url('AdobeStock_300203767.jpg') center center / cover no-repeat;
+      opacity:0.08;z-index:0;
+    }
+    .alert-case{
+      position:relative;z-index:1;
+      background:rgba(26,86,168,0.08);border:1px solid var(--border);
+      border-left:5px solid var(--hid-orange);border-radius:var(--radius);
+      padding:28px 28px 24px;margin:48px auto;max-width:780px
+    }
     .alert-case h3{font-size:18px;font-weight:700;margin-bottom:10px;color:#fff}
     .alert-case p{color:var(--text2);font-size:14px;line-height:1.7}
     .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
-    .stat{background:rgba(232,145,45,0.06);border:1px solid rgba(232,145,45,0.12);border-radius:8px;padding:14px;text-align:center}
+    .stat{background:rgba(232,145,45,0.08);border:1px solid rgba(232,145,45,0.2);border-radius:8px;padding:14px;text-align:center}
     .stat .v{font-size:22px;font-weight:800;color:var(--hid-orange)}
     .stat .lb{font-size:11px;color:var(--text2);margin-top:2px}
 
     /* Sections */
     .section{padding:56px 0}
-    .stag{text-align:center;font-size:12px;font-weight:700;color:var(--hid-orange);text-transform:uppercase;letter-spacing:2px;margin-bottom:6px}
+    .stag{text-align:center;font-size:12px;font-weight:700;color:var(--hid-orange);text-transform:uppercase;letter-spacing:3px;margin-bottom:8px}
     .sh{text-align:center;font-size:28px;font-weight:300;margin-bottom:40px;letter-spacing:-.5px;color:#fff}
+    .sh-divider{width:80px;height:3px;background:var(--hid-orange);margin:0 auto 40px;border-radius:2px}
 
-    /* Speakers - 5 speakers in 2+3 layout */
+    /* Speakers - 5 speakers */
     .speakers{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:800px;margin:0 auto}
-    .speakers.row-single{grid-template-columns:1fr;max-width:400px}
-    .sp-card{background:rgba(26,86,168,0.06);border:1px solid var(--border);border-radius:var(--radius);padding:24px 20px;display:flex;gap:16px;align-items:flex-start;transition:all .25s}
-    .sp-card:hover{border-color:rgba(26,86,168,.3);transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.25)}
-    .sp-card.mod{border-color:rgba(232,145,45,.15);background:linear-gradient(135deg,rgba(232,145,45,.04),rgba(26,86,168,0.06) 60%)}
-    .sp-card.mod:hover{border-color:rgba(232,145,45,.3)}
-    .sp-img{width:72px;height:72px;border-radius:50%;object-fit:cover;object-position:top;flex-shrink:0;border:2px solid var(--border)}
-    .sp-card.mod .sp-img{border-color:rgba(232,145,45,.3)}
-    .sp-badge{display:inline-block;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;padding:3px 8px;border-radius:10px;margin-bottom:6px}
-    .sp-badge.hid{background:rgba(26,86,168,.12);color:var(--hid-light)}
-    .sp-badge.orange{background:rgba(232,145,45,.12);color:var(--hid-orange)}
-    .sp-badge.green{background:rgba(76,175,80,.12);color:var(--hid-green)}
-    .sp-badge.blue{background:rgba(91,155,213,.12);color:var(--hid-light)}
+    .sp-card{
+      background:rgba(26,86,168,0.06);border:1px solid var(--border);border-radius:var(--radius);
+      padding:24px 20px;display:flex;gap:16px;align-items:flex-start;transition:all .25s;
+      position:relative;overflow:hidden;
+    }
+    .sp-card::before{
+      content:'';position:absolute;top:0;left:0;bottom:0;width:4px;
+      background:linear-gradient(180deg,var(--hid-blue),var(--hid-medium));
+    }
+    .sp-card:hover{border-color:rgba(26,86,168,.35);transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.3)}
+    .sp-card.mod{border-color:rgba(232,145,45,.2);background:linear-gradient(135deg,rgba(232,145,45,.06),rgba(26,86,168,0.06) 60%)}
+    .sp-card.mod::before{background:linear-gradient(180deg,var(--hid-orange),var(--hid-yellow))}
+    .sp-card.mod:hover{border-color:rgba(232,145,45,.4)}
+    .sp-img{width:72px;height:82px;border-radius:10px;object-fit:cover;object-position:top;flex-shrink:0;border:2px solid rgba(26,86,168,0.2)}
+    .sp-card.mod .sp-img{border-color:rgba(232,145,45,.3);border-radius:10px}
+    .sp-badge{display:inline-block;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;padding:3px 8px;border-radius:4px;margin-bottom:6px}
+    .sp-badge.hid{background:rgba(26,86,168,.15);color:var(--hid-light);border:1px solid rgba(26,86,168,.2)}
+    .sp-badge.orange{background:rgba(232,145,45,.15);color:var(--hid-orange);border:1px solid rgba(232,145,45,.25)}
+    .sp-badge.green{background:rgba(76,175,80,.12);color:var(--hid-green);border:1px solid rgba(76,175,80,.2)}
     .sp-name{font-size:15px;font-weight:700;margin-bottom:2px;color:#fff}
     .sp-role{font-size:12px;color:var(--hid-light);font-weight:600;margin-bottom:6px}
     .sp-card.mod .sp-role{color:var(--hid-orange)}
@@ -118,7 +179,25 @@
     /* Mid CTA */
     .mid-cta{text-align:center;padding:36px 0}
 
-    /* Agenda */
+    /* Agenda — with subtle photo background */
+    .agenda-section{
+      position:relative;overflow:hidden;
+      background:rgba(26,86,168,0.04);
+      padding:56px 0;
+    }
+    .agenda-section .agenda-bg{
+      position:absolute;top:0;left:0;width:100%;height:100%;
+      background:url('AdobeStock_645355697.jpg') center center / cover no-repeat;
+      opacity:0.05;z-index:0;
+    }
+    .agenda-section .agenda-curve{
+      position:absolute;top:-200px;right:-250px;
+      width:600px;height:600px;
+      border:3px solid rgba(232,145,45,0.10);
+      border-radius:50%;z-index:0;pointer-events:none;
+    }
+    .agenda-section>*{position:relative;z-index:1}
+
     .agenda{max-width:640px;margin:0 auto}
     .ag-item{display:flex;gap:20px;padding:20px 0;border-bottom:1px solid var(--border)}
     .ag-item:last-child{border-bottom:none}
@@ -131,40 +210,72 @@
     .aud-item{background:rgba(26,86,168,0.06);border:1px solid var(--border);border-radius:10px;padding:18px 14px;text-align:center;font-size:13px;font-weight:500;color:var(--text)}
     .aud-icon{font-size:24px;display:block;margin-bottom:6px}
 
-    /* Final CTA */
-    .final{text-align:center;padding:64px 0 32px}
-    .final h2{font-size:32px;font-weight:300;margin-bottom:10px;letter-spacing:-.5px;color:#fff}
-    .final h2 em{font-style:normal;color:var(--hid-orange);font-weight:600}
-    .final p{color:var(--text2);font-size:15px;margin-bottom:28px;max-width:480px;margin-left:auto;margin-right:auto;font-weight:300}
+    /* Final CTA — with stock photo background */
+    .final{
+      text-align:center;padding:0;
+      position:relative;overflow:hidden;
+      min-height:380px;display:flex;align-items:center;justify-content:center;
+    }
+    .final .final-bg{
+      position:absolute;top:0;left:0;width:100%;height:100%;
+      background:url('AdobeStock_645355697.jpg') center center / cover no-repeat;
+      z-index:0;
+    }
+    .final .final-overlay{
+      position:absolute;top:0;left:0;width:100%;height:100%;
+      background:linear-gradient(180deg,
+        rgba(9,28,62,0.93) 0%,
+        rgba(9,28,62,0.85) 50%,
+        rgba(9,28,62,0.93) 100%
+      );
+      z-index:1;
+    }
+    .final .final-curve{
+      position:absolute;bottom:-250px;left:-200px;
+      width:600px;height:600px;
+      border:3px solid rgba(232,145,45,0.20);
+      border-radius:50%;z-index:2;pointer-events:none;
+    }
+    .final .final-accent{
+      position:absolute;bottom:0;left:0;right:0;height:6px;
+      background:linear-gradient(90deg,var(--hid-orange) 0%,var(--hid-orange) 40%,var(--hid-blue) 100%);
+      z-index:5;
+    }
+    .final-content{position:relative;z-index:3;padding:64px 20px}
+    .final h2{font-size:36px;font-weight:300;margin-bottom:12px;letter-spacing:-.5px;color:#fff}
+    .final h2 em{font-style:normal;color:var(--hid-orange);font-weight:700}
+    .final p{color:rgba(255,255,255,0.65);font-size:15px;margin-bottom:28px;max-width:480px;margin-left:auto;margin-right:auto;font-weight:300}
 
     /* Footer */
     .footer{text-align:center;padding:32px 0;border-top:1px solid var(--border);font-size:12px;color:var(--text2)}
     .footer strong{color:var(--hid-light)}
     .footer .footer-logos{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:14px}
-    .footer .footer-logos img.hid{height:28px;border-radius:3px}
-    .footer .footer-logos .fsep{width:1px;height:20px;background:rgba(255,255,255,0.1)}
+    .footer .footer-logos img.hid{height:32px;border-radius:3px}
+    .footer .footer-logos .fsep{width:1.5px;height:22px;background:rgba(255,255,255,0.12)}
     .footer .footer-logos img.lm{height:14px;opacity:.6}
-    .footer .powered{margin-top:10px;font-size:11px;text-transform:uppercase;letter-spacing:3px;opacity:.35;font-weight:500}
+    .footer .powered{margin-top:12px;font-size:11px;text-transform:uppercase;letter-spacing:3px;color:rgba(255,255,255,0.25);font-weight:500}
 
     /* Sticky bar */
     .sticky{position:fixed;bottom:0;left:0;right:0;background:rgba(4,10,20,.95);backdrop-filter:blur(12px);border-top:1px solid var(--border);padding:10px 20px;display:flex;justify-content:center;align-items:center;gap:16px;z-index:100}
     .sticky-text{font-size:13px;font-weight:500;color:var(--text)}
     .sticky-text .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--hid-orange);animation:blink 1.5s infinite;margin-right:4px}
 
-    /* Graphic curve decoration — HID brand element: thin stroke, no fill, accent color */
+    /* Graphic curve decoration — fixed on page */
     .curve-decoration{
-      position:fixed;top:50%;right:-280px;
-      width:700px;height:700px;
-      border:1.5px solid rgba(232,145,45,0.12);
+      position:fixed;top:50%;right:-300px;
+      width:750px;height:750px;
+      border:3px solid rgba(232,145,45,0.08);
       border-radius:50%;
       transform:translateY(-50%);
       pointer-events:none;z-index:0;
     }
-    .curve-decoration::after{
-      content:'';position:absolute;
-      top:60px;left:60px;right:60px;bottom:60px;
-      border:1px solid rgba(232,145,45,0.06);
+    .curve-decoration-2{
+      position:fixed;top:60%;left:-350px;
+      width:600px;height:600px;
+      border:2px solid rgba(26,86,168,0.06);
       border-radius:50%;
+      transform:translateY(-50%);
+      pointer-events:none;z-index:0;
     }
 
     @media(max-width:680px){
@@ -175,15 +286,19 @@
       .sticky-text{display:none}
       .cd-box{min-width:60px;padding:10px 12px}
       .cd-box .n{font-size:22px}
+      .hero{min-height:auto}
+      .final{min-height:auto}
     }
   </style>
 </head>
 <body>
 
-<!-- Decorative curve (HID brand element) -->
+<!-- Fixed decorative curves (HID brand element) -->
 <div class="curve-decoration"></div>
+<div class="curve-decoration-2"></div>
 
-<div class="urgency"><span>Vagas limitadas — 17 de março às 11h (Brasília) — Inscrição gratuita</span></div>
+<!-- Orange urgency bar -->
+<div class="urgency"><span>🔒 Vagas limitadas — 17 de março às 11h (Brasília) — Inscrição 100% gratuita</span></div>
 
 <!-- Logo bar: HID + Limitless -->
 <div class="logo-bar">
@@ -192,8 +307,16 @@
   <img class="lm-logo" src="limitless-logo.svg" alt="Limitless Media">
 </div>
 
+<!-- HERO — Full stock photo background -->
 <section class="hero">
-  <div class="wrap">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-curve-1"></div>
+  <div class="hero-curve-2"></div>
+  <div class="hero-curve-3"></div>
+  <div class="hero-accent-left"></div>
+  <div class="hero-accent-bottom"></div>
+  <div class="hero-content">
     <div class="pill"><span class="dot"></span> Webinar Ao Vivo · 17 de Março · 11h BRT</div>
     <h1>Se um ransomware travasse seus sistemas <em>amanhã</em>, sua UTI operaria?</h1>
     <p class="hero-sub">
@@ -229,14 +352,17 @@
   </div>
 </div>
 
-<div class="wrap">
-  <div class="alert-case">
-    <h3>⚠️ Em 2023, um hospital brasileiro ficou refém de hackers por 4 dias.</h3>
-    <p>Todos os sistemas digitais travados. Prontuários inacessíveis. Cirurgias canceladas. A equipe voltou para papel e caneta enquanto negociava com criminosos. O que salvou parte da operação foi ter credenciais físicas como backup.</p>
-    <div class="stats-row">
-      <div class="stat"><div class="v">4 dias</div><div class="lb">Sistemas fora do ar</div></div>
-      <div class="stat"><div class="v">100%</div><div class="lb">Cirurgias pausadas</div></div>
-      <div class="stat"><div class="v">R$ MM</div><div class="lb">Prejuízo estimado</div></div>
+<div class="alert-section">
+  <div class="alert-bg"></div>
+  <div class="wrap">
+    <div class="alert-case">
+      <h3>⚠️ Em 2023, um hospital brasileiro ficou refém de hackers por 4 dias.</h3>
+      <p>Todos os sistemas digitais travados. Prontuários inacessíveis. Cirurgias canceladas. A equipe voltou para papel e caneta enquanto negociava com criminosos. O que salvou parte da operação foi ter credenciais físicas como backup.</p>
+      <div class="stats-row">
+        <div class="stat"><div class="v">4 dias</div><div class="lb">Sistemas fora do ar</div></div>
+        <div class="stat"><div class="v">100%</div><div class="lb">Cirurgias pausadas</div></div>
+        <div class="stat"><div class="v">R$ MM</div><div class="lb">Prejuízo estimado</div></div>
+      </div>
     </div>
   </div>
 </div>
@@ -245,12 +371,13 @@
   <div class="wrap">
     <div class="stag">Quem vai participar</div>
     <div class="sh">Painelistas & Moderadora</div>
+    <div class="sh-divider"></div>
     <div class="speakers">
 
       <div class="sp-card mod">
         <img src="thalita.jpeg" alt="Thalita Lellice" class="sp-img">
         <div>
-          <div class="sp-badge orange">Moderadora</div>
+          <div class="sp-badge orange">★ Moderadora</div>
           <div class="sp-name">Thalita Lellice Morais Campelo</div>
           <div class="sp-role">Especialista em Arquitetura Hospitalar</div>
           <p class="sp-bio">Arquiteta e consultora em arquitetura para saúde, com mais de 13 anos de experiência no setor. Atuou em frentes como ABDEH, Ministério da Saúde e Novacap. Já realizou trabalhos de consultoria para mais de 70 hospitais da rede pública.</p>
@@ -260,7 +387,7 @@
       <div class="sp-card">
         <img src="vitor.jpeg" alt="Vitor Ferreira" class="sp-img">
         <div>
-          <div class="sp-badge green">Novo · Guest Speaker</div>
+          <div class="sp-badge green">Guest Speaker</div>
           <div class="sp-name">Vitor Ferreira</div>
           <div class="sp-role">CIO — Hospital Infantil Sabará · Presidente ABCIS</div>
           <p class="sp-bio">CIO do Hospital Infantil Sabará e Presidente da ABCIS (Associação Brasileira CIO Saúde). Reconhecido entre os 100 mais influentes da saúde (2024), Top 50 Executive AI (2024) e 100 Tech Informers (2025).</p>
@@ -270,7 +397,7 @@
       <div class="sp-card">
         <img src="bia.jpg" alt="Bia Gadia" class="sp-img">
         <div>
-          <div class="sp-badge green">Novo · Guest Speaker</div>
+          <div class="sp-badge green">Guest Speaker</div>
           <div class="sp-name">Bia Gadia</div>
           <div class="sp-role">CEO — Gadia Arquitetura & Design · Ex-VP ABDEH</div>
           <p class="sp-bio">Arquiteta e CEO da Gadia Arquitetura & Design, com mais de 20 anos em projetos para a área da saúde. Especialista em Arquitetura Hospitalar e Neurociência aplicada. Mestranda em Inovação e Saúde.</p>
@@ -305,10 +432,13 @@
   </div>
 </section>
 
-<section class="section" style="background:rgba(26,86,168,0.04)">
+<section class="agenda-section">
+  <div class="agenda-bg"></div>
+  <div class="agenda-curve"></div>
   <div class="wrap">
     <div class="stag">O que vamos cobrir</div>
     <div class="sh">Agenda do Webinar</div>
+    <div class="sh-divider"></div>
     <div class="agenda">
       <div class="ag-item">
         <div class="ag-time">11:00</div>
@@ -338,6 +468,7 @@
   <div class="wrap">
     <div class="stag">Para quem é este webinar</div>
     <div class="sh">Ideal para profissionais de:</div>
+    <div class="sh-divider"></div>
     <div class="aud-grid">
       <div class="aud-item"><span class="aud-icon">🏥</span>Gestão de TI Hospitalar</div>
       <div class="aud-item"><span class="aud-icon">🔒</span>Segurança da Informação</div>
@@ -349,12 +480,17 @@
   </div>
 </section>
 
+<!-- Final CTA — with stock photo background -->
 <section class="final">
-  <div class="wrap">
+  <div class="final-bg"></div>
+  <div class="final-overlay"></div>
+  <div class="final-curve"></div>
+  <div class="final-accent"></div>
+  <div class="final-content">
     <h2>Não espere o ataque <em>acontecer</em>.</h2>
     <p>90 minutos que podem salvar milhões em prejuízos — e vidas que dependem de sistemas funcionando.</p>
     <a href="https://register.gotowebinar.com/register/4678901816620353883" class="cta">Garantir Minha Vaga Agora →</a>
-    <div class="meta" style="margin-top:10px"><span>✓ 100% gratuito — sem compromisso</span></div>
+    <div class="meta" style="margin-top:12px"><span>✓ 100% gratuito — sem compromisso</span></div>
   </div>
 </section>
 
