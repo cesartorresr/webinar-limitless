@@ -26,6 +26,12 @@
     body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;padding-bottom:80px}
     a{color:inherit;text-decoration:none}
 
+    /* Logo bar */
+    .logo-bar{display:flex;align-items:center;justify-content:center;gap:20px;padding:20px 20px 16px;position:relative;z-index:10}
+    .logo-bar img.hid-logo{height:36px;border-radius:3px}
+    .logo-bar .logo-sep{width:1px;height:28px;background:rgba(255,255,255,0.15)}
+    .logo-bar img.lm-logo{height:18px;opacity:.85}
+
     /* HID Blue urgency bar */
     .urgency{background:var(--hid-blue);text-align:center;padding:12px 16px;font-size:13px;font-weight:600;letter-spacing:.3px;position:sticky;top:0;z-index:100;color:#fff}
     .urgency span{animation:pulse 2s ease-in-out infinite}
@@ -132,23 +138,33 @@
     .final p{color:var(--text2);font-size:15px;margin-bottom:28px;max-width:480px;margin-left:auto;margin-right:auto;font-weight:300}
 
     /* Footer */
-    .footer{text-align:center;padding:28px 0;border-top:1px solid var(--border);font-size:12px;color:var(--text2)}
+    .footer{text-align:center;padding:32px 0;border-top:1px solid var(--border);font-size:12px;color:var(--text2)}
     .footer strong{color:var(--hid-light)}
-    .footer .powered{margin-top:10px;font-size:10px;text-transform:uppercase;letter-spacing:2px;opacity:.4}
+    .footer .footer-logos{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:14px}
+    .footer .footer-logos img.hid{height:28px;border-radius:3px}
+    .footer .footer-logos .fsep{width:1px;height:20px;background:rgba(255,255,255,0.1)}
+    .footer .footer-logos img.lm{height:14px;opacity:.6}
+    .footer .powered{margin-top:10px;font-size:11px;text-transform:uppercase;letter-spacing:3px;opacity:.35;font-weight:500}
 
     /* Sticky bar */
     .sticky{position:fixed;bottom:0;left:0;right:0;background:rgba(4,10,20,.95);backdrop-filter:blur(12px);border-top:1px solid var(--border);padding:10px 20px;display:flex;justify-content:center;align-items:center;gap:16px;z-index:100}
     .sticky-text{font-size:13px;font-weight:500;color:var(--text)}
     .sticky-text .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--hid-orange);animation:blink 1.5s infinite;margin-right:4px}
 
-    /* Graphic curve decoration */
+    /* Graphic curve decoration — HID brand element: thin stroke, no fill, accent color */
     .curve-decoration{
-      position:fixed;top:50%;right:-300px;
+      position:fixed;top:50%;right:-280px;
       width:700px;height:700px;
-      border:1.5px solid rgba(232,145,45,0.06);
+      border:1.5px solid rgba(232,145,45,0.12);
       border-radius:50%;
       transform:translateY(-50%);
       pointer-events:none;z-index:0;
+    }
+    .curve-decoration::after{
+      content:'';position:absolute;
+      top:60px;left:60px;right:60px;bottom:60px;
+      border:1px solid rgba(232,145,45,0.06);
+      border-radius:50%;
     }
 
     @media(max-width:680px){
@@ -168,6 +184,13 @@
 <div class="curve-decoration"></div>
 
 <div class="urgency"><span>Vagas limitadas — 17 de março às 11h (Brasília) — Inscrição gratuita</span></div>
+
+<!-- Logo bar: HID + Limitless -->
+<div class="logo-bar">
+  <img class="hid-logo" src="hid-logo.png" alt="HID Global">
+  <div class="logo-sep"></div>
+  <img class="lm-logo" src="limitless-logo.svg" alt="Limitless Media">
+</div>
 
 <section class="hero">
   <div class="wrap">
@@ -337,6 +360,11 @@
 
 <footer class="footer">
   <div class="wrap">
+    <div class="footer-logos">
+      <img class="hid" src="hid-logo.png" alt="HID Global">
+      <div class="fsep"></div>
+      <img class="lm" src="limitless-logo.svg" alt="Limitless Media">
+    </div>
     <p>Organizado por <strong>Limitless Media</strong> em parceria com <strong>HID Global</strong> · © 2026</p>
     <p style="margin-top:6px">17 de março, 2026 · 11h às 12h30 (horário de Brasília)</p>
     <p class="powered">Powering Trusted Identities</p>
