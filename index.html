@@ -6,8 +6,15 @@
   <title>Hospitales Imparables: Identidad Fisica y Digital ante Ciberataques y Fallos de Red | Webinar HID Global</title>
   <meta name="description" content="CIOs, CISOs y Directores de Infraestructura hospitalaria debaten estrategias de continuidad clinica ante ransomware y fallos de red. 12 de mayo, 2026. Gratuito.">
   <meta property="og:title" content="Hospitales Imparables: Identidad Fisica y Digital ante Ciberataques">
-  <meta property="og:description" content="Si un ransomware tumba su red manana, sus quirofanos deben seguir operando. Expertos de HID Global, gobierno y hospitales lideres revelan la arquitectura de resiliencia.">
+  <meta property="og:description" content="Si un ransomware tumba su red manana, sus quirofanos deben seguir operando. Expertos de HID Global, gobierno y hospitales lideres revelan la arquitectura de resiliencia. 12 Mayo 2026, 11 AM Colombia. Gratuito.">
   <meta property="og:type" content="website">
+  <meta property="og:image" content="https://webinar-limitless.vercel.app/gtw-featured.jpg">
+  <meta property="og:image:width" content="200">
+  <meta property="og:image:height" content="200">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Hospitales Imparables | Webinar HID Global">
+  <meta name="twitter:description" content="Si un ransomware tumba su red manana, sus quirofanos deben seguir operando. 12 Mayo 2026.">
+  <meta name="twitter:image" content="https://webinar-limitless.vercel.app/gtw-featured.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
@@ -74,12 +81,12 @@
     .sp-card:hover{border-color:rgba(26,86,168,.35);transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.3)}
     .sp-card.mod{border-color:rgba(232,145,45,.2);background:linear-gradient(135deg,rgba(232,145,45,.06),rgba(26,86,168,0.06) 60%)}
     .sp-card.mod::before{background:linear-gradient(180deg,var(--hid-orange),var(--hid-yellow))}
-    .sp-card.tbd{border-style:dashed}
+    .sp-card.confidential{background:linear-gradient(135deg,rgba(26,86,168,.08),rgba(9,28,62,.12))}
     .sp-placeholder{width:72px;height:82px;border-radius:10px;flex-shrink:0;border:2px dashed rgba(148,163,184,0.3);display:flex;align-items:center;justify-content:center;font-size:28px;color:var(--text2);background:rgba(26,86,168,0.06)}
     .sp-badge{display:inline-block;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;padding:3px 8px;border-radius:4px;margin-bottom:6px}
     .sp-badge.hid{background:rgba(26,86,168,.15);color:var(--hid-light);border:1px solid rgba(26,86,168,.2)}
     .sp-badge.orange{background:rgba(232,145,45,.15);color:var(--hid-orange);border:1px solid rgba(232,145,45,.25)}
-    .sp-badge.tbd{background:rgba(148,163,184,.12);color:var(--text2);border:1px solid rgba(148,163,184,.2)}
+    .sp-badge.confidential{background:rgba(91,155,213,.12);color:var(--hid-light);border:1px solid rgba(91,155,213,.25)}
     .sp-name{font-size:15px;font-weight:700;margin-bottom:2px;color:#fff}
     .sp-role{font-size:12px;color:var(--hid-light);font-weight:600;margin-bottom:6px}
     .sp-card.mod .sp-role{color:var(--hid-orange)}
@@ -99,6 +106,13 @@
     .ag-time{font-size:14px;font-weight:700;color:var(--hid-orange);min-width:50px;padding-top:1px}
     .ag-title{font-size:15px;font-weight:700;margin-bottom:3px;color:#fff}
     .ag-desc{font-size:13px;color:var(--text2)}
+    .value-stack{max-width:780px;margin:0 auto;padding:8px 16px 0}
+    .vs-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:28px}
+    .vs-item{display:flex;gap:14px;align-items:flex-start;background:rgba(26,86,168,.06);border:1px solid var(--border);border-left:3px solid var(--hid-orange);border-radius:10px;padding:18px 20px}
+    .vs-check{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:rgba(232,145,45,.15);color:var(--hid-orange);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;margin-top:1px}
+    .vs-item h4{font-size:14px;font-weight:700;color:#fff;margin-bottom:4px;line-height:1.3}
+    .vs-item p{font-size:12px;color:var(--text2);line-height:1.55;margin:0}
+    @media(max-width:680px){.vs-grid{grid-template-columns:1fr}}
     .aud-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:640px;margin:0 auto}
     .aud-item{background:rgba(26,86,168,0.06);border:1px solid var(--border);border-radius:10px;padding:18px 14px;text-align:center;font-size:13px;font-weight:500;color:var(--text)}
     .aud-icon{font-size:24px;display:block;margin-bottom:6px}
@@ -199,7 +213,7 @@
 
 <div class="proof">
   <div class="wrap">
-    <div class="proof-text">Dirigido a CIOs, CISOs y Directores de Infraestructura hospitalaria en toda Latinoamerica:</div>
+    <div class="proof-text">Dirigido a <strong style="color:var(--hid-light)">CIOs, CISOs y Directores de Infraestructura hospitalaria</strong> en los 7 mercados lideres de LATAM:</div>
     <div class="countries-flags">
       <span class="flag-item">Colombia</span>
       <span class="flag-item">Mexico</span>
@@ -228,7 +242,43 @@
   </div>
 </div>
 
-<section class="section">
+<section class="section" style="padding-top:40px">
+  <div class="wrap">
+    <div class="value-stack">
+      <div class="stag">Que se lleva al registrarse</div>
+      <div class="sh">6 entregables concretos</div>
+      <div class="sh-divider"></div>
+      <div class="vs-grid">
+        <div class="vs-item">
+          <div class="vs-check">&check;</div>
+          <div><h4>Hoja de ruta de resiliencia</h4><p>Framework de 3 ejes (Smart Credentialing, High-Security ID, Continuidad Operativa) aplicable al dia siguiente.</p></div>
+        </div>
+        <div class="vs-item">
+          <div class="vs-check">&check;</div>
+          <div><h4>Evaluacion HID sin costo</h4><p>Diagnostico personalizado del estado de sus credenciales, emision y continuidad &mdash; con el equipo regional de HID Global.</p></div>
+        </div>
+        <div class="vs-item">
+          <div class="vs-check">&check;</div>
+          <div><h4>Casos reales LATAM</h4><p>Lecciones de 2 CIOs hospitalarios sobre modernizacion sin interrumpir quirofanos, UCI ni farmacia.</p></div>
+        </div>
+        <div class="vs-item">
+          <div class="vs-check">&check;</div>
+          <div><h4>Benchmark sector publico</h4><p>Como los sistemas de identidad ciudadana masiva blindan la identidad a escala &mdash; y que es transferible a su hospital.</p></div>
+        </div>
+        <div class="vs-item">
+          <div class="vs-check">&check;</div>
+          <div><h4>Replay + slides</h4><p>Grabacion completa del webinar + material de referencia enviados a su correo 24 horas despues.</p></div>
+        </div>
+        <div class="vs-item">
+          <div class="vs-check">&check;</div>
+          <div><h4>Certificado de asistencia</h4><p>Certificado nominal HID Global + Limitless Media, valido para horas de formacion continua interna.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:32px">
   <div class="wrap">
     <div class="stag">Quienes participan</div>
     <div class="sh">Panelistas & Moderador</div>
@@ -245,30 +295,30 @@
         </div>
       </div>
 
-      <div class="sp-card tbd">
+      <div class="sp-card confidential">
         <div class="sp-placeholder">&#x1F3DB;</div>
         <div>
-          <div class="sp-badge tbd">Gobierno &middot; Keynote</div>
-          <div class="sp-name">Alto Funcionario de Gobierno</div>
-          <div class="sp-role">INE Mexico / RENAP Guatemala / JCE Dominicana</div>
-          <p class="sp-bio">Responsable de los sistemas de identidad ciudadana masiva mas robustos de la region. Presentara &quot;Seguridad Nacional en Salud: Lecciones del Sector Publico para la Proteccion de Identidades Masivas e Inviolables&quot; (15 min).</p>
+          <div class="sp-badge confidential">Keynote Gobierno</div>
+          <div class="sp-name">Alto Funcionario de Identidad Nacional</div>
+          <div class="sp-role">Sistema de Identidad Ciudadana &mdash; LATAM</div>
+          <p class="sp-bio">Responsable de uno de los sistemas de identidad ciudadana masiva mas robustos de la region. Presentara &quot;Seguridad Nacional en Salud: Lecciones del Sector Publico para la Proteccion de Identidades Masivas e Inviolables&quot; (15 min).</p>
         </div>
       </div>
 
-      <div class="sp-card tbd">
+      <div class="sp-card confidential">
         <div class="sp-placeholder">&#x1F3E5;</div>
         <div>
-          <div class="sp-badge tbd">Hospital Lider &middot; Panelista</div>
+          <div class="sp-badge confidential">Panel Hospital &middot; Mexico</div>
           <div class="sp-name">Director de TI Hospitalario</div>
-          <div class="sp-role">Hospital ABC &middot; TecSalud &middot; Fundacion Santa Fe</div>
+          <div class="sp-role">Grupo hospitalario lider &mdash; Mexico</div>
           <p class="sp-bio">CIO de uno de los principales grupos hospitalarios de Mexico. Aportara al panel &quot;Resiliencia 360&deg;&quot; con la vision real de continuidad operativa desde una red hospitalaria de alta complejidad.</p>
         </div>
       </div>
 
-      <div class="sp-card tbd">
+      <div class="sp-card confidential">
         <div class="sp-placeholder">&#x1F6E1;</div>
         <div>
-          <div class="sp-badge tbd">Hospital Colombia &middot; Panelista</div>
+          <div class="sp-badge confidential">Panel Hospital &middot; Colombia</div>
           <div class="sp-name">Director de TI Hospitalario</div>
           <div class="sp-role">Grupo hospitalario lider &mdash; Colombia</div>
           <p class="sp-bio">Lider de tecnologia de un grupo hospitalario colombiano con multiples sedes. Compartira experiencias reales de modernizacion de identidad fisica y digital sin interrumpir la atencion medica.</p>
@@ -280,8 +330,8 @@
         <div>
           <div class="sp-badge orange">Moderador</div>
           <div class="sp-name">Consultor Senior de Seguridad</div>
-          <div class="sp-role">ALAS / ASUME &mdash; Asociacion Latinoamericana de Seguridad</div>
-          <p class="sp-bio">Moderador invitado de ALAS o ASUME. Establecera el marco estrategico del webinar y facilitara la conversacion del panel &quot;Resiliencia 360&deg;&quot; (45 min) + Q&amp;A en vivo (10 min).</p>
+          <div class="sp-role">ALAS &mdash; Asociacion Latinoamericana de Seguridad</div>
+          <p class="sp-bio">Moderador invitado de ALAS. Establecera el marco estrategico del webinar y facilitara la conversacion del panel &quot;Resiliencia 360&deg;&quot; (45 min) + Q&amp;A en vivo (10 min).</p>
         </div>
       </div>
 
@@ -351,9 +401,9 @@
   <div class="final-overlay"></div>
   <div class="final-content">
     <h2>No espere al proximo ataque. <em>Prepare su hospital</em>.</h2>
-    <p>90 minutos que pueden ahorrarle millones en downtime, proteger la continuidad clinica y darle una hoja de ruta concreta de identidad fisica y digital. Incluye <strong>Evaluacion de Seguridad de Credenciales</strong> personalizada con el equipo regional de HID Global para todos los asistentes.</p>
+    <p>90 minutos que pueden ahorrarle millones en downtime, proteger la continuidad clinica y darle una hoja de ruta concreta. Incluye <strong>Evaluacion de Seguridad de Credenciales</strong> personalizada con el equipo regional de HID Global para todos los asistentes registrados.</p>
     <a href="https://register.gotowebinar.com/register/1524948315649584982" target="_blank" rel="noopener" class="cta">Reservar Mi Cupo Ahora &rarr;</a>
-    <div class="meta" style="margin-top:12px"><span>&check; 100% gratuito sin compromiso</span> <span>&check; Martes 12 de Mayo, 11 AM Colombia</span></div>
+    <div class="meta" style="margin-top:14px"><span>&check; 100% gratuito</span> <span>&check; Replay + slides</span> <span>&check; Certificado de asistencia</span> <span>&check; Evaluacion HID personalizada</span></div>
   </div>
 </section>
 
