@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cibersegurança Hospitalar — Webinar Gratuito | 17 de Março</title>
-  <meta name="description" content="CISOs e Diretores de TI dos maiores hospitais do Brasil debatem ao vivo estratégias de continuidade operacional contra ransomware. Gratuito.">
-  <meta property="og:title" content="Se um ransomware travasse seus sistemas amanhã, sua UTI operaria?">
-  <meta property="og:description" content="Especialistas do Hospital Sabará, HID Global, Hospital Santa Rita e Gadia Arquitetura revelam estratégias reais de proteção. 17 de março, 11h. Gratuito.">
+  <title>Su tarjeta de acceso hospitalaria se clona en 30 segundos — Webinar Gratuito | HID Global</title>
+  <meta name="description" content="Directores de TI y Seguridad de los principales hospitales de Latinoamerica debaten en vivo como proteger el control de acceso hospitalario. Gratuito.">
+  <meta property="og:title" content="Su tarjeta de acceso hospitalaria se clona en 30 segundos">
+  <meta property="og:description" content="Expertos de hospitales lideres y HID Global revelan como migrar del acceso cloneable al credential movil. Webinar gratuito.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="https://webinar-limitless.vercel.app/banner.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
@@ -25,406 +24,162 @@
     }
     body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;padding-bottom:80px}
     a{color:inherit;text-decoration:none}
-
-    /* ===== LOGO BAR ===== */
     .logo-bar{display:flex;align-items:center;justify-content:center;gap:20px;padding:20px 20px 16px;position:relative;z-index:10}
     .logo-bar img.hid-logo{height:40px;border-radius:3px}
     .logo-bar .logo-sep{width:1.5px;height:30px;background:rgba(255,255,255,0.2)}
     .logo-bar img.lm-logo{height:18px;opacity:.85}
-
-    /* ===== URGENCY BAR — HID Blue (subtle, professional) ===== */
     .urgency{background:var(--hid-blue);text-align:center;padding:11px 16px;font-size:12px;font-weight:600;letter-spacing:.5px;position:sticky;top:0;z-index:100;color:#fff}
     .urgency strong{color:var(--hid-yellow)}
-
     .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
-
-    /* ===== HERO — FULL PHOTOGRAPHY BACKGROUND ===== */
-    .hero{
-      padding:0;text-align:center;
-      position:relative;overflow:hidden;
-      min-height:600px;
-      display:flex;align-items:center;justify-content:center;
-    }
-    .hero .hero-bg{
-      position:absolute;top:0;left:0;width:100%;height:100%;
-      background:url('AdobeStock_1431011167.jpg') center center / cover no-repeat;
-      z-index:0;
-    }
-    .hero .hero-overlay{
-      position:absolute;top:0;left:0;width:100%;height:100%;
-      background:linear-gradient(170deg,
-        rgba(4,8,18,0.80) 0%,
-        rgba(4,8,18,0.62) 35%,
-        rgba(4,8,18,0.40) 65%,
-        rgba(4,8,18,0.70) 100%
-      );
-      z-index:1;
-    }
-    /* HID graphic curve — rounded rectangle corner (agency style) */
-    .hero .hero-curve-1{
-      position:absolute;top:60px;right:40px;
-      width:420px;height:460px;
-      border-top:2px solid rgba(212,168,67,0.35);
-      border-right:2px solid rgba(212,168,67,0.35);
-      border-bottom:none;border-left:none;
-      border-top-right-radius:40px;
-      z-index:2;pointer-events:none;
-    }
-    /* Thin horizontal white line */
-    .hero .hero-curve-2{
-      position:absolute;bottom:120px;left:0;right:0;
-      height:1px;width:100%;
-      background:rgba(255,255,255,0.10);
-      border:none;border-radius:0;
-      z-index:2;pointer-events:none;
-    }
-    .hero .hero-curve-3{
-      display:none;/* removed — keeping it clean */
-      border-radius:50%;z-index:2;pointer-events:none;
-    }
-    /* Removed heavy accent bars — keeping design clean like HID agency */
-    .hero .hero-accent-left{display:none}
-    .hero .hero-accent-bottom{display:none}
+    .hero{padding:0;text-align:center;position:relative;overflow:hidden;min-height:600px;display:flex;align-items:center;justify-content:center}
+    .hero .hero-bg{position:absolute;top:0;left:0;width:100%;height:100%;background:url('AdobeStock_1431011167.jpg') center center / cover no-repeat;z-index:0}
+    .hero .hero-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(170deg,rgba(4,8,18,0.80) 0%,rgba(4,8,18,0.62) 35%,rgba(4,8,18,0.40) 65%,rgba(4,8,18,0.70) 100%);z-index:1}
+    .hero .hero-curve-1{position:absolute;top:60px;right:40px;width:420px;height:460px;border-top:2px solid rgba(212,168,67,0.35);border-right:2px solid rgba(212,168,67,0.35);border-top-right-radius:40px;z-index:2;pointer-events:none}
     .hero-content{position:relative;z-index:3;padding:72px 20px 56px;max-width:900px}
-
     .pill{display:inline-flex;align-items:center;gap:8px;background:rgba(212,168,67,0.10);border:1px solid rgba(212,168,67,0.30);padding:7px 16px;border-radius:20px;font-size:11px;font-weight:600;color:#D4A843;margin-bottom:24px;text-transform:uppercase;letter-spacing:2px}
     .pill .dot{width:7px;height:7px;border-radius:50%;background:var(--hid-orange);animation:blink 1.5s infinite}
     @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
-
     h1{font-size:clamp(30px,5vw,52px);font-weight:300;line-height:1.1;letter-spacing:-1px;margin-bottom:20px;max-width:800px;margin-left:auto;margin-right:auto}
     h1 em{font-style:normal;color:#D4A843;font-weight:600}
-
     .hero-sub{font-size:17px;color:rgba(255,255,255,0.7);max-width:640px;margin:0 auto 28px;line-height:1.65;font-weight:300}
     .hero-sub strong{color:#fff;font-weight:600}
-
-    /* Orange CTA */
     .cta{display:inline-flex;align-items:center;gap:8px;background:var(--hid-orange);color:#fff;padding:16px 40px;border-radius:6px;font-size:16px;font-weight:700;transition:all .2s;border:none;cursor:pointer;letter-spacing:.5px;text-transform:uppercase}
     .cta:hover{background:#D4801F;transform:translateY(-2px);box-shadow:0 8px 32px rgba(232,145,45,.35)}
-    .cta-blue{background:var(--hid-blue)}
-    .cta-blue:hover{background:var(--hid-medium);box-shadow:0 8px 32px rgba(26,86,168,.35)}
     .cta-sm{padding:11px 24px;font-size:14px}
     .meta{margin-top:12px;font-size:12px;color:rgba(255,255,255,0.5);display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
-
-    /* Countdown */
     .cd-row{display:flex;justify-content:center;gap:12px;margin:36px 0 0}
     .cd-box{background:rgba(26,86,168,0.15);border:1px solid rgba(26,86,168,0.3);border-radius:10px;padding:14px 18px;min-width:72px;text-align:center}
     .cd-box .n{font-size:28px;font-weight:800;color:var(--hid-orange);display:block;line-height:1.1}
     .cd-box .l{font-size:10px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:1px;margin-top:2px}
-
-    /* Proof bar */
     .proof{text-align:center;padding:32px 0;border-bottom:1px solid var(--border)}
-    .proof-text{font-size:13px;color:var(--text2);display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap}
-    .proof-text strong{color:var(--text)}
-    .logos{display:flex;justify-content:center;align-items:center;gap:20px;margin-top:14px;flex-wrap:wrap}
-    .logos span{font-size:12px;font-weight:700;color:var(--hid-light);opacity:.7;letter-spacing:.5px}
-
-    /* Alert case — with stock photo peek */
+    .proof-text{font-size:13px;color:var(--text2)}
+    .countries-flags{display:flex;justify-content:center;align-items:center;gap:18px;flex-wrap:wrap;margin-top:12px}
+    .flag-item{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--hid-light)}
     .alert-section{position:relative;overflow:hidden;margin:0}
-    .alert-section .alert-bg{
-      position:absolute;top:0;left:0;width:100%;height:100%;
-      background:url('AdobeStock_300203767.jpg') center center / cover no-repeat;
-      opacity:0.08;z-index:0;
-    }
-    .alert-case{
-      position:relative;z-index:1;
-      background:rgba(26,86,168,0.08);border:1px solid var(--border);
-      border-left:5px solid var(--hid-orange);border-radius:var(--radius);
-      padding:28px 28px 24px;margin:48px auto;max-width:780px
-    }
+    .alert-section .alert-bg{position:absolute;top:0;left:0;width:100%;height:100%;background:url('AdobeStock_300203767.jpg') center center / cover no-repeat;opacity:0.08;z-index:0}
+    .alert-case{position:relative;z-index:1;background:rgba(26,86,168,0.08);border:1px solid var(--border);border-left:5px solid var(--hid-orange);border-radius:var(--radius);padding:28px 28px 24px;margin:48px auto;max-width:780px}
     .alert-case h3{font-size:18px;font-weight:700;margin-bottom:10px;color:#fff}
     .alert-case p{color:var(--text2);font-size:14px;line-height:1.7}
-    .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+    .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}
     .stat{background:rgba(232,145,45,0.08);border:1px solid rgba(232,145,45,0.2);border-radius:8px;padding:14px;text-align:center}
     .stat .v{font-size:22px;font-weight:800;color:var(--hid-orange)}
     .stat .lb{font-size:11px;color:var(--text2);margin-top:2px}
-
-    /* Sections */
     .section{padding:56px 0}
     .stag{text-align:center;font-size:12px;font-weight:700;color:var(--hid-orange);text-transform:uppercase;letter-spacing:3px;margin-bottom:8px}
     .sh{text-align:center;font-size:28px;font-weight:300;margin-bottom:40px;letter-spacing:-.5px;color:#fff}
     .sh-divider{width:80px;height:2px;background:linear-gradient(90deg,transparent,#D4A843,transparent);margin:0 auto 40px;border-radius:2px}
-
-    /* Speakers - 5 speakers */
     .speakers{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:800px;margin:0 auto}
-    .sp-card{
-      background:rgba(26,86,168,0.06);border:1px solid var(--border);border-radius:var(--radius);
-      padding:24px 20px;display:flex;gap:16px;align-items:flex-start;transition:all .25s;
-      position:relative;overflow:hidden;
-    }
-    .sp-card::before{
-      content:'';position:absolute;top:0;left:0;bottom:0;width:4px;
-      background:linear-gradient(180deg,var(--hid-blue),var(--hid-medium));
-    }
+    .sp-card{background:rgba(26,86,168,0.06);border:1px solid var(--border);border-radius:var(--radius);padding:24px 20px;display:flex;gap:16px;align-items:flex-start;transition:all .25s;position:relative;overflow:hidden}
+    .sp-card::before{content:'';position:absolute;top:0;left:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--hid-blue),var(--hid-medium))}
     .sp-card:hover{border-color:rgba(26,86,168,.35);transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.3)}
     .sp-card.mod{border-color:rgba(232,145,45,.2);background:linear-gradient(135deg,rgba(232,145,45,.06),rgba(26,86,168,0.06) 60%)}
     .sp-card.mod::before{background:linear-gradient(180deg,var(--hid-orange),var(--hid-yellow))}
-    .sp-card.mod:hover{border-color:rgba(232,145,45,.4)}
-    .sp-img{width:72px;height:82px;border-radius:10px;object-fit:cover;object-position:top;flex-shrink:0;border:2px solid rgba(26,86,168,0.2)}
-    .sp-img.zoom{transform:scale(1.5);object-position:center 30%;border-radius:10px}
-    .sp-card.mod .sp-img{border-color:rgba(232,145,45,.3);border-radius:10px}
+    .sp-card.tbd{border-style:dashed}
+    .sp-placeholder{width:72px;height:82px;border-radius:10px;flex-shrink:0;border:2px dashed rgba(148,163,184,0.3);display:flex;align-items:center;justify-content:center;font-size:28px;color:var(--text2);background:rgba(26,86,168,0.06)}
     .sp-badge{display:inline-block;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;padding:3px 8px;border-radius:4px;margin-bottom:6px}
     .sp-badge.hid{background:rgba(26,86,168,.15);color:var(--hid-light);border:1px solid rgba(26,86,168,.2)}
     .sp-badge.orange{background:rgba(232,145,45,.15);color:var(--hid-orange);border:1px solid rgba(232,145,45,.25)}
-    .sp-badge.green{background:rgba(76,175,80,.12);color:var(--hid-green);border:1px solid rgba(76,175,80,.2)}
+    .sp-badge.tbd{background:rgba(148,163,184,.12);color:var(--text2);border:1px solid rgba(148,163,184,.2)}
     .sp-name{font-size:15px;font-weight:700;margin-bottom:2px;color:#fff}
     .sp-role{font-size:12px;color:var(--hid-light);font-weight:600;margin-bottom:6px}
     .sp-card.mod .sp-role{color:var(--hid-orange)}
     .sp-bio{font-size:12px;color:var(--text2);line-height:1.55}
-
-    /* Mid CTA */
+    .speaker-cta{text-align:center;margin-top:20px;padding:16px;background:rgba(232,145,45,0.08);border:1px solid rgba(232,145,45,0.2);border-radius:8px;max-width:640px;margin-left:auto;margin-right:auto}
+    .speaker-cta p.t{font-size:13px;color:var(--hid-orange);font-weight:600;margin-bottom:4px}
+    .speaker-cta p.s{font-size:12px;color:var(--text2)}
+    .speaker-cta a{color:var(--hid-light);text-decoration:underline}
     .mid-cta{text-align:center;padding:36px 0}
-
-    /* Agenda — with subtle photo background */
-    .agenda-section{
-      position:relative;overflow:hidden;
-      background:rgba(26,86,168,0.04);
-      padding:56px 0;
-    }
-    .agenda-section .agenda-bg{
-      position:absolute;top:0;left:0;width:100%;height:100%;
-      background:url('AdobeStock_645355697.jpg') center center / cover no-repeat;
-      opacity:0.05;z-index:0;
-    }
-    .agenda-section .agenda-curve{
-      position:absolute;top:-200px;right:-250px;
-      width:600px;height:600px;
-      border:3px solid rgba(232,145,45,0.10);
-      border-radius:50%;z-index:0;pointer-events:none;
-    }
+    .agenda-section{position:relative;overflow:hidden;background:rgba(26,86,168,0.04);padding:56px 0}
+    .agenda-section .agenda-bg{position:absolute;top:0;left:0;width:100%;height:100%;background:url('AdobeStock_645355697.jpg') center center / cover no-repeat;opacity:0.05;z-index:0}
+    .agenda-section .agenda-curve{position:absolute;top:-200px;right:-250px;width:600px;height:600px;border:3px solid rgba(232,145,45,0.10);border-radius:50%;z-index:0;pointer-events:none}
     .agenda-section>*{position:relative;z-index:1}
-
     .agenda{max-width:640px;margin:0 auto}
     .ag-item{display:flex;gap:20px;padding:20px 0;border-bottom:1px solid var(--border)}
     .ag-item:last-child{border-bottom:none}
     .ag-time{font-size:14px;font-weight:700;color:var(--hid-orange);min-width:50px;padding-top:1px}
     .ag-title{font-size:15px;font-weight:700;margin-bottom:3px;color:#fff}
     .ag-desc{font-size:13px;color:var(--text2)}
-
-    /* Audience grid */
     .aud-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:640px;margin:0 auto}
     .aud-item{background:rgba(26,86,168,0.06);border:1px solid var(--border);border-radius:10px;padding:18px 14px;text-align:center;font-size:13px;font-weight:500;color:var(--text)}
     .aud-icon{font-size:24px;display:block;margin-bottom:6px}
-
-    /* Final CTA — with stock photo background */
-    .final{
-      text-align:center;padding:0;
-      position:relative;overflow:hidden;
-      min-height:380px;display:flex;align-items:center;justify-content:center;
-    }
-    .final .final-bg{
-      position:absolute;top:0;left:0;width:100%;height:100%;
-      background:url('AdobeStock_645355697.jpg') center center / cover no-repeat;
-      z-index:0;
-    }
-    .final .final-overlay{
-      position:absolute;top:0;left:0;width:100%;height:100%;
-      background:linear-gradient(170deg,
-        rgba(4,8,18,0.82) 0%,
-        rgba(4,8,18,0.68) 50%,
-        rgba(4,8,18,0.82) 100%
-      );
-      z-index:1;
-    }
-    .final .final-curve{
-      position:absolute;bottom:40px;right:30px;
-      width:300px;height:250px;
-      border-bottom:2px solid rgba(212,168,67,0.20);
-      border-right:2px solid rgba(212,168,67,0.20);
-      border-top:none;border-left:none;
-      border-bottom-right-radius:40px;
-      z-index:2;pointer-events:none;
-    }
-    .final .final-accent{display:none}
+    .final{text-align:center;padding:0;position:relative;overflow:hidden;min-height:380px;display:flex;align-items:center;justify-content:center}
+    .final .final-bg{position:absolute;top:0;left:0;width:100%;height:100%;background:url('AdobeStock_645355697.jpg') center center / cover no-repeat;z-index:0}
+    .final .final-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(170deg,rgba(4,8,18,0.82) 0%,rgba(4,8,18,0.68) 50%,rgba(4,8,18,0.82) 100%);z-index:1}
     .final-content{position:relative;z-index:3;padding:64px 20px}
     .final h2{font-size:36px;font-weight:300;margin-bottom:12px;letter-spacing:-.5px;color:#fff}
     .final h2 em{font-style:normal;color:#D4A843;font-weight:600}
     .final p{color:rgba(255,255,255,0.65);font-size:15px;margin-bottom:28px;max-width:480px;margin-left:auto;margin-right:auto;font-weight:300}
-
-    /* Footer */
     .footer{text-align:center;padding:32px 0;border-top:1px solid var(--border);font-size:12px;color:var(--text2)}
     .footer strong{color:var(--hid-light)}
     .footer .footer-logos{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:14px}
     .footer .footer-logos img.hid{height:32px;border-radius:3px}
     .footer .footer-logos .fsep{width:1.5px;height:22px;background:rgba(255,255,255,0.12)}
     .footer .footer-logos img.lm{height:14px;opacity:.6}
-    .footer .powered{margin-top:12px;font-size:11px;text-transform:uppercase;letter-spacing:3px;color:rgba(255,255,255,0.25);font-weight:500}
-
-    /* Sticky bar */
+    .fargo-badge{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:16px}
+    .fargo-badge .printer-img{height:48px;width:auto;object-fit:contain}
+    .fargo-badge .fargo-text{display:flex;flex-direction:column;text-align:left}
+    .fargo-badge .fargo-brand{font-size:12px;font-weight:700;color:rgba(255,255,255,0.7);letter-spacing:.5px;line-height:1.2}
+    .fargo-badge .fargo-tagline{font-size:15px;font-weight:600;color:var(--hid-light);font-style:italic;line-height:1.2}
     .sticky{position:fixed;bottom:0;left:0;right:0;background:rgba(4,10,20,.95);backdrop-filter:blur(12px);border-top:1px solid var(--border);padding:10px 20px;display:flex;justify-content:center;align-items:center;gap:16px;z-index:100}
     .sticky-text{font-size:13px;font-weight:500;color:var(--text)}
     .sticky-text .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--hid-orange);animation:blink 1.5s infinite;margin-right:4px}
-
-    /* HID graphic curve — fixed rounded rect corner on page (agency style) */
-    .curve-decoration{
-      position:fixed;top:20%;right:30px;
-      width:350px;height:400px;
-      border-top:2px solid rgba(212,168,67,0.06);
-      border-right:2px solid rgba(212,168,67,0.06);
-      border-bottom:none;border-left:none;
-      border-top-right-radius:40px;
-      pointer-events:none;z-index:0;
-    }
-    .curve-decoration-2{display:none}
-
-    /* ========= TABLET ========= */
     @media(max-width:900px){
-      .curve-decoration{display:none}
       .hero .hero-curve-1{display:none}
       .speakers{grid-template-columns:1fr;max-width:520px}
+      .stats-row{grid-template-columns:repeat(2,1fr)}
     }
-
-    /* ========= MOBILE ========= */
     @media(max-width:680px){
       body{padding-bottom:70px}
-
-      /* Urgency bar */
-      .urgency{font-size:11px;padding:10px 12px;letter-spacing:.3px}
-
-      /* Logo bar */
-      .logo-bar{gap:14px;padding:16px 16px 12px}
+      .urgency{font-size:11px;padding:10px 12px}
+      .logo-bar{gap:14px;padding:16px}
       .logo-bar img.hid-logo{height:32px}
-      .logo-bar .logo-sep{height:24px}
-      .logo-bar img.lm-logo{height:14px}
-
-      /* Hero */
       .hero{min-height:auto}
-      .hero .hero-curve-1{display:none}
-      .hero .hero-curve-2{display:none}
       .hero-content{padding:40px 16px 36px}
-      .pill{font-size:10px;padding:6px 12px;letter-spacing:1.5px;margin-bottom:18px}
-      h1{font-size:28px;letter-spacing:-.5px;margin-bottom:16px}
-      .hero-sub{font-size:14px;margin-bottom:22px;line-height:1.6}
+      h1{font-size:28px}
+      .hero-sub{font-size:14px}
       .cta{padding:14px 28px;font-size:14px;width:100%;justify-content:center}
-      .meta{font-size:11px;gap:8px}
-      .cd-row{gap:8px;margin-top:24px}
-      .cd-box{min-width:56px;padding:10px 10px;border-radius:8px}
+      .cd-box{min-width:56px;padding:10px}
       .cd-box .n{font-size:20px}
-      .cd-box .l{font-size:9px}
-
-      /* Proof */
-      .proof{padding:24px 0}
-      .proof-text{font-size:12px}
-      .logos{gap:10px;margin-top:10px}
-      .logos span{font-size:10px}
-
-      /* Alert */
-      .alert-case{padding:20px 16px 18px;margin:32px 16px;border-radius:8px}
-      .alert-case h3{font-size:15px}
-      .alert-case p{font-size:13px}
-      .stats-row{grid-template-columns:1fr;gap:8px}
-      .stat{padding:12px}
-      .stat .v{font-size:20px}
-      .stat .lb{font-size:10px}
-
-      /* Speakers section */
+      .alert-case{margin:32px 16px;padding:20px 16px}
+      .stats-row{grid-template-columns:1fr 1fr}
       .section{padding:40px 0}
-      .stag{font-size:11px;letter-spacing:2px;margin-bottom:6px}
-      .sh{font-size:22px;margin-bottom:28px}
-      .sh-divider{margin-bottom:28px}
-      .speakers{grid-template-columns:1fr;gap:14px;max-width:100%}
-      .sp-card{flex-direction:row;align-items:flex-start;text-align:left;padding:18px 16px 18px 20px;gap:14px}
-      .sp-img{width:60px;height:68px;border-radius:8px}
-      .sp-img.zoom{transform:scale(1.4);border-radius:8px}
-      .sp-name{font-size:14px}
-      .sp-role{font-size:11px}
-      .sp-bio{font-size:11px;line-height:1.5}
-      .sp-badge{font-size:8px;padding:2px 6px}
-
-      /* Mid CTA */
-      .mid-cta{padding:24px 0}
-      .mid-cta .cta{width:100%;justify-content:center}
-
-      /* Agenda */
-      .agenda-section{padding:40px 0}
-      .agenda-section .agenda-curve{display:none}
-      .ag-item{gap:14px;padding:16px 0}
-      .ag-time{font-size:13px;min-width:44px}
-      .ag-title{font-size:14px}
-      .ag-desc{font-size:12px}
-
-      /* Audience */
-      .aud-grid{grid-template-columns:repeat(2,1fr);gap:8px}
-      .aud-item{padding:14px 10px;font-size:12px}
-      .aud-icon{font-size:20px}
-
-      /* Final CTA */
-      .final{min-height:auto}
-      .final .final-curve{display:none}
-      .final-content{padding:44px 16px}
-      .final h2{font-size:26px;margin-bottom:10px}
-      .final p{font-size:14px;margin-bottom:22px}
-      .final .cta{width:100%;justify-content:center}
-
-      /* Footer */
-      .footer{padding:24px 0}
-      .footer .footer-logos img.hid{height:28px}
-      .footer .footer-logos img.lm{height:12px}
-      .footer p{font-size:11px}
-      .footer .powered{font-size:10px;letter-spacing:2px}
-
-      /* Sticky bar */
-      .sticky{padding:8px 12px;gap:10px}
+      .sh{font-size:22px}
+      .speakers{grid-template-columns:1fr;gap:14px}
+      .sp-placeholder{width:60px;height:68px}
+      .aud-grid{grid-template-columns:repeat(2,1fr)}
+      .final h2{font-size:26px}
       .sticky-text{display:none}
-      .sticky .cta{width:100%;text-align:center;padding:12px 16px;font-size:13px}
-
-      /* Curve decoration */
-      .curve-decoration{display:none}
-      .curve-decoration-2{display:none}
-
-      /* Wrap padding */
+      .sticky .cta{width:100%;padding:12px 16px;font-size:13px}
       .wrap{padding:0 16px}
-    }
-
-    /* ========= VERY SMALL (< 380px) ========= */
-    @media(max-width:380px){
-      h1{font-size:24px}
-      .hero-sub{font-size:13px}
-      .cd-row{flex-wrap:wrap}
-      .cd-box{min-width:48px;flex:1}
-      .final h2{font-size:22px}
-      .aud-grid{grid-template-columns:1fr}
-      .sp-card{padding:14px 12px 14px 16px}
-      .sp-img{width:52px;height:60px}
     }
   </style>
 </head>
 <body>
 
-<!-- Fixed decorative curves (HID brand element) -->
-<div class="curve-decoration"></div>
-<div class="curve-decoration-2"></div>
+<div class="urgency"><strong>Mayo 2026</strong> &middot; 10:00 AM hora Colombia &middot; Inscripcion gratuita &middot; Cupos limitados</div>
 
-<!-- Orange urgency bar -->
-<div class="urgency"><strong>17 de março</strong> · 11h Brasília · Inscrição gratuita · Vagas limitadas</div>
-
-<!-- Logo bar: HID + Limitless -->
 <div class="logo-bar">
   <img class="hid-logo" src="hid-logo.png" alt="HID Global">
   <div class="logo-sep"></div>
   <img class="lm-logo" src="limitless-logo.svg" alt="Limitless Media">
 </div>
 
-<!-- HERO — Full stock photo background -->
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
   <div class="hero-curve-1"></div>
-  <div class="hero-curve-2"></div>
-  <div class="hero-curve-3"></div>
-  <div class="hero-accent-left"></div>
-  <div class="hero-accent-bottom"></div>
   <div class="hero-content">
-    <div class="pill"><span class="dot"></span> Webinar Ao Vivo · 17 de Março · 11h BRT</div>
-    <h1>Se um ransomware travasse seus sistemas <em>amanhã</em>, sua UTI operaria?</h1>
+    <div class="pill"><span class="dot"></span> Webinar en Vivo &middot; Mayo 2026 &middot; Gratuito</div>
+    <h1>Su tarjeta de acceso hospitalaria se clona en <em>30 segundos</em></h1>
     <p class="hero-sub">
-      Especialistas do <strong>Hospital Sabará</strong>, <strong>HID Global</strong>, <strong>Hospital Santa Rita</strong> e <strong>Gadia Arquitetura</strong> revelam as estratégias reais que protegem operações críticas quando tudo digital para de funcionar.
+      El <strong>78% de los hospitales en Latinoamerica</strong> aun usa tarjetas de proximidad que se duplican con un dispositivo de $5 USD. Expertos de hospitales lideres y <strong>HID Global</strong> revelan como migrar al acceso seguro sin reemplazar toda su infraestructura.
     </p>
-    <a href="https://register.gotowebinar.com/register/4678901816620353883" class="cta">Garantir Minha Vaga →</a>
+    <a href="#registro" class="cta">Reservar Mi Cupo &rarr;</a>
     <div class="meta">
-      <span>✓ Gratuito</span>
-      <span>✓ Online ao vivo</span>
-      <span>✓ 90 minutos</span>
-      <span>✓ Com certificado</span>
+      <span>&check; Gratuito</span>
+      <span>&check; Online en vivo</span>
+      <span>&check; 90 minutos</span>
+      <span>&check; Con certificado</span>
     </div>
     <div class="cd-row">
       <div class="cd-box"><span class="n" id="d">--</span><span class="l">Dias</span></div>
@@ -432,19 +187,27 @@
       <div class="cd-box"><span class="n" id="m">--</span><span class="l">Min</span></div>
       <div class="cd-box"><span class="n" id="s">--</span><span class="l">Seg</span></div>
     </div>
+    <div class="fargo-badge" style="margin-top:28px">
+      <img class="printer-img" src="printer-fargo.png" alt="FARGO">
+      <div class="fargo-text">
+        <span class="fargo-brand">HID FARGO&reg;</span>
+        <span class="fargo-tagline">Seriously efficient</span>
+      </div>
+    </div>
   </div>
 </section>
 
 <div class="proof">
   <div class="wrap">
-    <div class="proof-text">Profissionais dessas instituições já confirmaram presença:</div>
-    <div class="logos">
-      <span>SABARÁ</span>
-      <span>HID GLOBAL</span>
-      <span>SANTA RITA</span>
-      <span>SÍRIO-LIBANÊS</span>
-      <span>PUC CAMPINAS</span>
-      <span>ABCIS</span>
+    <div class="proof-text">Dirigido a profesionales de hospitales en toda Latinoamerica:</div>
+    <div class="countries-flags">
+      <span class="flag-item">Colombia</span>
+      <span class="flag-item">Mexico</span>
+      <span class="flag-item">Chile</span>
+      <span class="flag-item">Peru</span>
+      <span class="flag-item">Argentina</span>
+      <span class="flag-item">Ecuador</span>
+      <span class="flag-item">Panama</span>
     </div>
   </div>
 </div>
@@ -453,12 +216,13 @@
   <div class="alert-bg"></div>
   <div class="wrap">
     <div class="alert-case">
-      <h3>⚠️ Em 2023, um hospital brasileiro ficou refém de hackers por 4 dias.</h3>
-      <p>Todos os sistemas digitais travados. Prontuários inacessíveis. Cirurgias canceladas. A equipe voltou para papel e caneta enquanto negociava com criminosos. O que salvou parte da operação foi ter credenciais físicas como backup.</p>
+      <h3>&#9888; El 68% de los incidentes de seguridad hospitalaria en LATAM son por acceso fisico no autorizado</h3>
+      <p>No es un hackeo sofisticado. Es alguien con una tarjeta clonada entrando a la farmacia a las 3am. El robo de medicamentos, la perdida de equipos medicos y el acceso a areas restringidas cuestan millones al año — y la mayoria de hospitales no tiene ni registro de quien entro.</p>
       <div class="stats-row">
-        <div class="stat"><div class="v">4 dias</div><div class="lb">Sistemas fora do ar</div></div>
-        <div class="stat"><div class="v">100%</div><div class="lb">Cirurgias pausadas</div></div>
-        <div class="stat"><div class="v">R$ MM</div><div class="lb">Prejuízo estimado</div></div>
+        <div class="stat"><div class="v">78%</div><div class="lb">Hospitales con tarjetas clonables</div></div>
+        <div class="stat"><div class="v">3-7%</div><div class="lb">Perdida anual en farmacia</div></div>
+        <div class="stat"><div class="v">40%</div><div class="lb">Robo interno de equipos</div></div>
+        <div class="stat"><div class="v">$5 USD</div><div class="lb">Costo de un clonador</div></div>
       </div>
     </div>
   </div>
@@ -466,65 +230,60 @@
 
 <section class="section">
   <div class="wrap">
-    <div class="stag">Quem vai participar</div>
-    <div class="sh">Painelistas & Moderadora</div>
+    <div class="stag">Quienes participan</div>
+    <div class="sh">Panelistas & Moderador</div>
     <div class="sh-divider"></div>
     <div class="speakers">
 
-      <div class="sp-card mod">
-        <img src="thalita.jpeg" alt="Thalita Lellice" class="sp-img">
-        <div>
-          <div class="sp-badge orange">★ Moderadora</div>
-          <div class="sp-name">Thalita Lellice Morais Campelo</div>
-          <div class="sp-role">Especialista em Arquitetura Hospitalar</div>
-          <p class="sp-bio">Arquiteta e consultora em arquitetura para saúde, com mais de 13 anos de experiência no setor. Atuou em frentes como ABDEH, Ministério da Saúde e Novacap. Já realizou trabalhos de consultoria para mais de 70 hospitais da rede pública.</p>
-        </div>
-      </div>
-
       <div class="sp-card">
-        <img src="vitor.jpeg" alt="Vitor Ferreira" class="sp-img zoom">
-        <div>
-          <div class="sp-badge green">Guest Speaker</div>
-          <div class="sp-name">Vitor Ferreira</div>
-          <div class="sp-role">CIO — Hospital Infantil Sabará · Presidente ABCIS</div>
-          <p class="sp-bio">CIO do Hospital Infantil Sabará e Presidente da ABCIS (Associação Brasileira CIO Saúde). Reconhecido entre os 100 mais influentes da saúde (2024), Top 50 Executive AI (2024) e 100 Tech Informers (2025).</p>
-        </div>
-      </div>
-
-      <div class="sp-card">
-        <img src="bia.jpg" alt="Bia Gadia" class="sp-img">
-        <div>
-          <div class="sp-badge green">Guest Speaker</div>
-          <div class="sp-name">Bia Gadia</div>
-          <div class="sp-role">CEO — Gadia Arquitetura & Design · Ex-VP ABDEH</div>
-          <p class="sp-bio">Arquiteta e CEO da Gadia Arquitetura & Design, com mais de 20 anos em projetos para a área da saúde. Especialista em Arquitetura Hospitalar e Neurociência aplicada. Mestranda em Inovação e Saúde.</p>
-        </div>
-      </div>
-
-      <div class="sp-card">
-        <img src="deborah_foto.jpeg" alt="Deborah Pignatari Nardy" class="sp-img">
+        <div class="sp-placeholder">HID</div>
         <div>
           <div class="sp-badge hid">HID Global</div>
-          <div class="sp-name">Deborah Pignatari Nardy</div>
-          <div class="sp-role">Regional Sales Manager — HID Global Brasil</div>
-          <p class="sp-bio">Especialista em soluções de identidade segura e controle de acesso físico para ambientes críticos. Linha de frente da convergência entre segurança física e digital em hospitais.</p>
+          <div class="sp-name">Representante HID Global LATAM</div>
+          <div class="sp-role">Regional Sales &mdash; HID Global Latinoamerica</div>
+          <p class="sp-bio">Especialista en soluciones de identidad segura, control de acceso fisico y credenciales moviles para entornos criticos hospitalarios en toda Latinoamerica.</p>
         </div>
       </div>
 
-      <div class="sp-card">
-        <img src="anselmo.jpeg" alt="Anselmo Antunes de Carvalho" class="sp-img">
+      <div class="sp-card tbd">
+        <div class="sp-placeholder">&#x1F3E5;</div>
         <div>
-          <div class="sp-badge hid">Painelista</div>
-          <div class="sp-name">Anselmo Antunes de Carvalho</div>
-          <div class="sp-role">Gerente de TI — Hospital Santa Rita SP</div>
-          <p class="sp-bio">Gerencia a infraestrutura de TI de um dos principais hospitais de São Paulo. Experiência real em proteger sistemas hospitalares contra ameaças cibernéticas no dia a dia.</p>
+          <div class="sp-badge tbd">Por confirmar</div>
+          <div class="sp-name">Director(a) de TI &mdash; Hospital Lider</div>
+          <div class="sp-role">CIO / Director de Tecnologia</div>
+          <p class="sp-bio">Lider de tecnologia de uno de los principales hospitales de Latinoamerica. Compartira su experiencia real implementando control de acceso moderno.</p>
+        </div>
+      </div>
+
+      <div class="sp-card tbd">
+        <div class="sp-placeholder">&#x1F512;</div>
+        <div>
+          <div class="sp-badge tbd">Por confirmar</div>
+          <div class="sp-name">Jefe de Seguridad &mdash; Red Hospitalaria</div>
+          <div class="sp-role">Director de Seguridad / Infraestructura</div>
+          <p class="sp-bio">Responsable de la seguridad fisica de una red hospitalaria con multiples sedes. Experiencia en migracion de tarjetas legacy a credenciales encriptadas.</p>
+        </div>
+      </div>
+
+      <div class="sp-card mod">
+        <div class="sp-placeholder">&#x2B50;</div>
+        <div>
+          <div class="sp-badge orange">Moderador</div>
+          <div class="sp-name">Moderador &mdash; Limitless Media</div>
+          <div class="sp-role">BD Intelligence & Event Strategy</div>
+          <p class="sp-bio">Facilitara la conversacion entre los panelistas y gestionara las preguntas del publico en vivo.</p>
         </div>
       </div>
 
     </div>
 
+    <div class="speaker-cta">
+      <p class="t">&iquest;Es usted Director de TI, Jefe de Seguridad o lider hospitalario?</p>
+      <p class="s">Estamos invitando speakers de hospitales lideres en Colombia, Mexico, Chile y Peru. <a href="mailto:info@limitlessmedia.co">Contactenos</a> si le interesa participar como panelista.</p>
+    </div>
+
     <div class="mid-cta">
-      <a href="https://register.gotowebinar.com/register/4678901816620353883" class="cta">Garantir Minha Vaga →</a>
+      <a href="#registro" class="cta">Reservar Mi Cupo &rarr;</a>
     </div>
   </div>
 </section>
@@ -533,29 +292,29 @@
   <div class="agenda-bg"></div>
   <div class="agenda-curve"></div>
   <div class="wrap">
-    <div class="stag">O que vamos cobrir</div>
-    <div class="sh">Agenda do Webinar</div>
+    <div class="stag">Que vamos a cubrir</div>
+    <div class="sh">Agenda del Webinar</div>
     <div class="sh-divider"></div>
     <div class="agenda">
       <div class="ag-item">
+        <div class="ag-time">10:00</div>
+        <div><div class="ag-title">Su tarjeta se clona en 30 segundos &mdash; Demo en vivo</div><div class="ag-desc">Demostracion real de como se duplica una tarjeta de proximidad 125kHz con un dispositivo de $5. El 78% de los hospitales de LATAM son vulnerables hoy.</div></div>
+      </div>
+      <div class="ag-item">
+        <div class="ag-time">10:20</div>
+        <div><div class="ag-title">El costo real del acceso no controlado</div><div class="ag-desc">Perdida de medicamentos, robo de equipos, acceso a areas restringidas. Numeros reales de hospitales en Colombia, Mexico y Chile.</div></div>
+      </div>
+      <div class="ag-item">
+        <div class="ag-time">10:40</div>
+        <div><div class="ag-title">De la tarjeta clonable al credential movil: Hoja de ruta</div><div class="ag-desc">Como migrar por fases sin reemplazar toda la infraestructura. HID Signo, iCLASS SE y Mobile Access: que funciona y cuanto cuesta realmente.</div></div>
+      </div>
+      <div class="ag-item">
         <div class="ag-time">11:00</div>
-        <div><div class="ag-title">Abertura e contexto</div><div class="ag-desc">O cenário atual de ciberataques em hospitais brasileiros — por que 2026 é o ano mais crítico.</div></div>
+        <div><div class="ag-title">Panel: Experiencias reales de hospitales en LATAM</div><div class="ag-desc">Directores de TI y seguridad comparten que funciono, que fallo y que harian diferente en su migracion de control de acceso.</div></div>
       </div>
       <div class="ag-item">
-        <div class="ag-time">11:15</div>
-        <div><div class="ag-title">Caso real: Ransomware em hospital brasileiro</div><div class="ag-desc">O que aconteceu, o que falhou, e o que salvou a operação — com a perspectiva de quem vive o dia a dia hospitalar.</div></div>
-      </div>
-      <div class="ag-item">
-        <div class="ag-time">11:35</div>
-        <div><div class="ag-title">Credenciais físicas como último recurso</div><div class="ag-desc">Como montar uma estratégia de continuidade operacional que funciona quando tudo digital falha.</div></div>
-      </div>
-      <div class="ag-item">
-        <div class="ag-time">11:55</div>
-        <div><div class="ag-title">Convergência: segurança física + digital + infraestrutura</div><div class="ag-desc">A visão da HID Global, a perspectiva do Sabará e do Santa Rita, e o olhar da arquitetura hospitalar para 2026.</div></div>
-      </div>
-      <div class="ag-item">
-        <div class="ag-time">12:10</div>
-        <div><div class="ag-title">Perguntas & Respostas ao vivo</div><div class="ag-desc">Sessão aberta com todos os painelistas. Traga suas dúvidas.</div></div>
+        <div class="ag-time">11:20</div>
+        <div><div class="ag-title">Preguntas y Respuestas en vivo</div><div class="ag-desc">Sesion abierta con todos los panelistas. Traiga sus dudas sobre su hospital.</div></div>
       </div>
     </div>
   </div>
@@ -563,31 +322,28 @@
 
 <section class="section">
   <div class="wrap">
-    <div class="stag">Para quem é este webinar</div>
-    <div class="sh">Ideal para profissionais de:</div>
+    <div class="stag">Para quien es este webinar</div>
+    <div class="sh">Ideal para profesionales de:</div>
     <div class="sh-divider"></div>
     <div class="aud-grid">
-      <div class="aud-item"><span class="aud-icon">🏥</span>Gestão de TI Hospitalar</div>
-      <div class="aud-item"><span class="aud-icon">🔒</span>Segurança da Informação</div>
-      <div class="aud-item"><span class="aud-icon">⚕️</span>Administração Hospitalar</div>
-      <div class="aud-item"><span class="aud-icon">🛡️</span>Compliance & LGPD</div>
-      <div class="aud-item"><span class="aud-icon">🔑</span>Controle de Acesso</div>
-      <div class="aud-item"><span class="aud-icon">📋</span>Gestão de Riscos</div>
+      <div class="aud-item"><span class="aud-icon">&#x1F3E5;</span>Direccion de TI Hospitalaria</div>
+      <div class="aud-item"><span class="aud-icon">&#x1F512;</span>Seguridad Fisica & Patrimonial</div>
+      <div class="aud-item"><span class="aud-icon">&#x2695;</span>Administracion Hospitalaria</div>
+      <div class="aud-item"><span class="aud-icon">&#x1F6E1;</span>Compliance & Regulacion</div>
+      <div class="aud-item"><span class="aud-icon">&#x1F511;</span>Control de Acceso</div>
+      <div class="aud-item"><span class="aud-icon">&#x1F4CB;</span>Compras & Procurement</div>
     </div>
   </div>
 </section>
 
-<!-- Final CTA — with stock photo background -->
-<section class="final">
+<section class="final" id="registro">
   <div class="final-bg"></div>
   <div class="final-overlay"></div>
-  <div class="final-curve"></div>
-  <div class="final-accent"></div>
   <div class="final-content">
-    <h2>Não espere o ataque <em>acontecer</em>.</h2>
-    <p>90 minutos que podem salvar milhões em prejuízos — e vidas que dependem de sistemas funcionando.</p>
-    <a href="https://register.gotowebinar.com/register/4678901816620353883" class="cta">Garantir Minha Vaga Agora →</a>
-    <div class="meta" style="margin-top:12px"><span>✓ 100% gratuito — sem compromisso</span></div>
+    <h2>No espere a que <em>clonen su acceso</em>.</h2>
+    <p>90 minutos que pueden ahorrarle millones en perdidas y proteger las areas mas criticas de su hospital.</p>
+    <a href="#" class="cta">Reservar Mi Cupo Ahora &rarr;</a>
+    <div class="meta" style="margin-top:12px"><span>&check; 100% gratuito sin compromiso</span></div>
   </div>
 </section>
 
@@ -598,20 +354,26 @@
       <div class="fsep"></div>
       <img class="lm" src="limitless-logo.svg" alt="Limitless Media">
     </div>
-    <p>Organizado por <strong>Limitless Media</strong> em parceria com <strong>HID Global</strong> · © 2026</p>
-    <p style="margin-top:6px">17 de março, 2026 · 11h às 12h30 (horário de Brasília)</p>
-    <p class="powered">Powering Trusted Identities</p>
+    <p>Organizado por <strong>Limitless Media</strong> en alianza con <strong>HID Global</strong> &middot; &copy; 2026</p>
+    <p style="margin-top:6px">Mayo 2026 &middot; 10:00 AM hora Colombia/Peru/Panama &middot; 12:00 PM hora Argentina/Chile</p>
+    <div class="fargo-badge">
+      <img class="printer-img" src="printer-fargo.png" alt="FARGO">
+      <div class="fargo-text">
+        <span class="fargo-brand">HID FARGO&reg;</span>
+        <span class="fargo-tagline">Seriously efficient</span>
+      </div>
+    </div>
   </div>
 </footer>
 
 <div class="sticky">
-  <span class="sticky-text"><span class="dot"></span> 17 de março · 11h BRT · Vagas limitadas</span>
-  <a href="https://register.gotowebinar.com/register/4678901816620353883" class="cta cta-sm">Garantir Minha Vaga →</a>
+  <span class="sticky-text"><span class="dot"></span> Mayo 2026 &middot; 10 AM COL &middot; Cupos limitados</span>
+  <a href="#registro" class="cta cta-sm">Reservar Mi Cupo &rarr;</a>
 </div>
 
 <script>
 !function(){
-  var t=new Date("2026-03-17T14:00:00Z");
+  var t=new Date("2026-05-28T15:00:00Z");
   function u(){
     var n=t-new Date();
     if(n<=0)return void["d","h","m","s"].forEach(function(i){document.getElementById(i).textContent="0"});
