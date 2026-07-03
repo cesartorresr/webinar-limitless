@@ -1,0 +1,13 @@
+import puppeteer from 'puppeteer';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const url = 'file://' + join(__dirname, 'og-blindaje.html');
+const browser = await puppeteer.launch({ defaultViewport: { width: 1200, height: 630, deviceScaleFactor: 2 } });
+const page = await browser.newPage();
+await page.goto(url, { waitUntil: 'networkidle0' });
+await new Promise(r => setTimeout(r, 900));
+const el = await page.$('.frame');
+await el.screenshot({ path: join(__dirname, 'og-blindaje.jpg'), type: 'jpeg', quality: 92 });
+await browser.close();
+console.log('OK og-blindaje.jpg');
