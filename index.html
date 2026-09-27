@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="es-MX">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -12,12 +12,12 @@
   FORMS_URL es la hoja de Google "Formularios Limitless"
   (integraciones/formularios.gs en el repo de la web).
 -->
-<title>Blindagem de Identidade Híbrida | Webinar HID Global × Limitless Media</title>
-<meta name="description" content="Se um ransomware travar sua rede amanhã, seus acessos continuam funcionando? Especialistas da HID Global revelam a arquitetura de resiliência. Webinar gratuito.">
+<title>Retos del Nearshoring en el Norte de México: Identidad, Control de Accesos y Seguridad Tecnológica | Webinar gratuito</title>
+<meta name="description" content="De Tijuana a Monterrey, el nearshoring multiplica plantas, contratistas y turnos. Cómo gestionar identidades y accesos físicos y digitales sin frenar la operación. Webinar gratuito.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Blindagem de Identidade Híbrida | Webinar HID Global">
-<meta property="og:description" content="Se um ransomware travar sua rede amanhã, seus acessos continuam funcionando? Webinar gratuito com especialistas da HID Global.">
-<meta property="og:image" content="https://webinar-limitless.vercel.app/og-blindaje.png">
+<meta property="og:title" content="Retos del Nearshoring en el Norte de México | Webinar gratuito">
+<meta property="og:description" content="Identidad, control de accesos y seguridad tecnológica para plantas en Nuevo León, Coahuila, Chihuahua, Sonora, Baja California y Tamaulipas.">
+<meta property="og:image" content="https://webinar-limitless.vercel.app/og-nearshoring.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -81,14 +81,16 @@
 
   /* ── Portada ── */
   .hero{position:relative;overflow:hidden;padding:22px 0 90px}
-  .hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.18;filter:saturate(.7)}
-  .hero-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(3,7,15,.35),rgba(3,7,15,.9) 65%,var(--bg))}
-  .hero-grid{position:relative;display:grid;grid-template-columns:1.12fr .88fr;gap:52px;align-items:start}
+  .hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.34;filter:saturate(.85)}
+  .hero-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(3,7,15,.92) 0%,rgba(3,7,15,.7) 55%,rgba(3,7,15,.45) 100%),linear-gradient(180deg,transparent 55%,var(--bg))}
+  .hero-grid{position:relative;display:grid;grid-template-columns:1.12fr .88fr;grid-template-areas:"top form" "details form";column-gap:52px;align-items:start}
+  .h-top{grid-area:top}.h-details{grid-area:details}#register{grid-area:form}
   .pill{display:inline-flex;align-items:center;gap:9px;border:1px solid color-mix(in srgb,var(--accent) 40%,transparent);background:color-mix(in srgb,var(--accent) 8%,transparent);padding:7px 14px;border-radius:999px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:22px}
   .pill .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent);animation:blink 1.6s infinite}
   @keyframes blink{50%{opacity:.3}}
   .hook{font-size:18px;color:var(--gold);font-weight:500;margin-bottom:14px;max-width:620px}
   .hero h1{font-size:clamp(34px,5.4vw,62px);font-weight:700;margin-bottom:20px}
+  .hero h1.long{font-size:clamp(30px,4.2vw,50px)}
   .hero h1 em{font-style:normal;background:linear-gradient(100deg,var(--accent),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
   .hero .sub{font-size:17px;color:var(--text2);max-width:600px;margin-bottom:24px}
   .when{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px}
@@ -197,7 +199,8 @@
   .reveal.in{opacity:1;transform:none}
 
   @media (max-width:920px){
-    .hero-grid{grid-template-columns:1fr;gap:34px}
+    .hero-grid{grid-template-columns:1fr;grid-template-areas:"top" "form" "details";row-gap:28px}
+    .hero-shade{background:linear-gradient(180deg,rgba(3,7,15,.75),rgba(3,7,15,.92) 60%,var(--bg))}
     .stats{grid-template-columns:1fr 1fr}
     .cards{grid-template-columns:1fr}
     .sticky{display:block}
@@ -234,10 +237,12 @@
     <div class="orb" style="width:420px;height:420px;left:-10%;top:40%;background:color-mix(in srgb,var(--brand) 60%,transparent);opacity:.35;animation-delay:-8s"></div>
 
     <div class="wrap hero-grid">
-      <div>
+      <div class="h-top">
         <div class="pill"><span class="dot"></span><span id="pill"></span></div>
         <p class="hook" id="hook"></p>
         <h1 id="title"></h1>
+      </div>
+      <div class="h-details">
         <p class="sub" id="sub"></p>
         <div class="when" id="when"></div>
         <div class="faces" id="faces"></div>
@@ -377,53 +382,58 @@
 const FORMS_URL = "https://script.google.com/macros/s/AKfycbyyop230ePpCw8ElP0fR3fkjOX2PpRv2MieRCqb5uSvP8Xh71XVVoDx_T54Ra_VWyWZ7Q/exec";
 
 const EVENTO = {
-  slug: "blindagem-identidade-2026",          // identificador único, sin espacios
-  lang: "pt",                                  // "es", "pt" o "en"
-  start: "2026-08-13T14:00:00Z",               // inicio en UTC
-  duration: 90,                                // minutos
-  refTimeZone: "America/Sao_Paulo",            // hora de referencia que se muestra
-  refTimeLabel: "horário de Brasília",
+  slug: "nearshoring-identidad-norte-mx-2026",  // identificador único, sin espacios
+  lang: "es",                                  // "es", "pt" o "en"
+  // Inicio en UTC. Vacío = "fecha por anunciar": la página capta preinscritos,
+  // sin cuenta regresiva ni calendario. 10:00 de Monterrey = 16:00 UTC.
+  start: "",
+  duration: 75,                                // minutos
+  refTimeZone: "America/Monterrey",            // hora de referencia que se muestra
+  refTimeLabel: "hora de Monterrey",
   whatsappRequired: true,                      // false = WhatsApp opcional
   showCountFrom: 50,                           // el contador aparece desde este número de inscritos
   replayUrl: "",                               // grabación, cuando exista
   teaserVideo: "",                             // video corto del orador (ej. "teaser.mp4"), opcional
   linkedinEvent: "",                           // enlace al evento de LinkedIn, opcional
   // Resultados de ediciones anteriores. SOLO cifras reales. Vacío = no se muestra.
-  proof: [],                                   // ej. [["480", "inscritos na edição anterior"]]
+  proof: [],
   sponsor: { name: "HID Global", logo: "hid-logo.png", brand: "#1A56A8", accent: "#E8912D" },
-  heroImage: "AdobeStock_1431011167.jpg",
-  pill: "Webinar ao vivo · Gratuito · Vagas limitadas",
-  hook: "Se um ransomware travar sua rede amanhã, seus acessos continuam funcionando?",
-  title: "Blindagem de Identidade Híbrida: <em>continuidade de acesso</em> diante de ciberataques",
-  sub: "Especialistas da HID Global revelam a arquitetura de identidade física e digital que mantém plantas e escritórios funcionando quando a rede cai, o servidor falha ou o ciberataque golpeia.",
+  heroImage: "hero-nearshoring.jpg",
+  pill: "Webinar en vivo · Gratuito · Cupos limitados",
+  hook: "De Tijuana a Monterrey: plantas nuevas, miles de identidades y un solo estándar de seguridad.",
+  title: "Retos del Nearshoring en el Norte de México: <em>identidad, control de accesos</em> y seguridad tecnológica",
+  sub: "En Nuevo León, Coahuila, Chihuahua, Sonora, Baja California y Tamaulipas, el nearshoring multiplica plantas, proveedores, contratistas y turnos. Líderes de seguridad y tecnología comparten cómo controlar quién entra, a dónde y a qué sistemas, sin frenar la operación ni la auditoría del corporativo.",
   problem: {
-    title: "Quando o ransomware derruba a rede, o acesso às suas plantas não deveria depender do servidor",
-    body: "O ransomware de infraestrutura ataca os servidores de identidade na nuvem. Quando a rede cai, os acessos ficam bloqueados e o perímetro físico fica exposto. O modelo híbrido — biometria para o dia a dia, smart card como chave offline — é a primeira linha de continuidade.",
-    stats: [["+70%", "Aumento de ataques a infraestrutura crítica"], ["~21 dias", "Downtime médio após um ransomware"], ["80%+", "Brechas que envolvem identidade"], ["24/7", "Operações que exigem acesso contínuo"]],
+    title: "Cada planta nueva suma cientos de identidades. Cada identidad mal gestionada es una puerta abierta.",
+    body: "Empleados, contratistas, proveedores y visitantes rotan todos los días entre plantas, oficinas y sistemas. Cuando cada sitio usa credenciales y reglas distintas, el acceso físico y el digital dejan de estar sincronizados: bajas que no se aplican, tarjetas compartidas y auditorías del corporativo global que no se pueden demostrar.",
+    // Fuentes: INEGI, empleo IMMEX por estado (El Mañana, ago 2026); México Industry
+    // (empresas IMMEX); Secretaría de Economía vía Líder Empresarial (IED Nuevo León
+    // 2025); AMPIP vía Industry & Energy Magazine (parques, jul 2026).
+    stats: [["52,9%", "del empleo maquilador (IMMEX) del país está en NL, Chihuahua, Baja California, Coahuila y Tamaulipas"], ["~40%", "de las empresas IMMEX están en Baja California, Nuevo León y Chihuahua"], ["+72,9%", "creció la inversión extranjera en Nuevo León en 2025 (US$3.628 M)"], ["34%", "de los parques industriales del país están en Nuevo León y Baja California"]],
   },
   deliverables: [
-    ["Roteiro de resiliência", "Framework híbrido (biometria + smart card + continuidade offline) aplicável no dia seguinte."],
-    ["Q&A ao vivo", "Acesso direto aos especialistas da HID Global para suas dúvidas técnicas."],
-    ["Matriz de resiliência", "Face ID (nuvem) vs. cartões (offline) vs. modelo híbrido, critério por critério."],
-    ["Pilares de continuidade", "Edge computing, soberania LGPD em dados biométricos e escalabilidade."],
-    ["Replay + slides", "Gravação completa e material de referência no seu e-mail."],
-    ["Certificado", "Certificado nominal de participação emitido pela Limitless Media."],
+    ["Mapa de riesgos de identidad", "Dónde se rompe el control de accesos cuando una operación crece de una planta a varias."],
+    ["Modelo de homologación", "Cómo llevar credenciales y reglas a un solo estándar entre plantas de México y el corporativo global."],
+    ["Contratistas y proveedores", "Altas, bajas y accesos temporales sin tarjetas prestadas ni permisos que nunca se retiran."],
+    ["Acceso físico + digital", "Una misma identidad para puertas, estaciones de trabajo y sistemas, con trazabilidad para auditoría."],
+    ["Q&A en vivo", "Tus preguntas respondidas por el panel, con casos reales de la industria en México."],
+    ["Grabación y material", "La grabación completa y las diapositivas en tu correo, aunque no puedas conectarte en vivo."],
   ],
-  speakers: [
-    { name: "Deborah Pignatari Nardy", role: "Regional Sales Manager · HID Global Brasil", photo: "deborah_foto.jpeg", tag: "Palestrante", bio: "Apresenta a arquitetura do modelo híbrido de identidade: biometria para a conveniência diária e smart card como chave offline." },
-    { name: "Ricardo Moreira", role: "CISO · SOC e Resposta a Incidentes", photo: "ricardo_foto.jpeg", tag: "Moderador", bio: "Conduz o painel Resiliência 360° e o Q&A ao vivo." },
-  ],
+  // Oradores confirmados. Vacío = la sección se oculta y se muestra "Panel por anunciar".
+  speakers: [],
+  // Agenda: [duración en minutos, tema, detalle]. Con fecha, se muestra la hora
+  // de inicio de cada bloque en la zona de quien visita.
   agenda: [
-    ["11:00", "Abertura: o novo horizonte de ameaças", "Por que a dependência absoluta da nuvem é o maior risco para a continuidade em 2026."],
-    ["11:05", "Ransomware de infraestrutura", "Como o ataque aos servidores de identidade bloqueia plantas e escritórios."],
-    ["11:20", "Face ID vs. cartões — e o enfoque híbrido", "Não é escolher uma tecnologia: é orquestrar as duas."],
-    ["11:35", "Painel: pilares de continuidade", "Edge computing, LGPD em biometria e escala em milhares de identidades."],
-    ["12:20", "Q&A e próximos passos", "Dúvidas ao vivo e os 3 passos para avaliar sua resiliência de identidade."],
+    [5, "Apertura: el mapa del nearshoring en el norte", "De Tijuana a Reynosa: qué industrias crecen y por qué la identidad es el nuevo cuello de botella."],
+    [15, "Automotriz y maquiladoras", "Turnos masivos, contratistas y rotación: controlar el acceso sin detener la línea."],
+    [15, "Homologación entre plantas globales", "Un solo estándar de identidad entre plantas del norte y el corporativo en EE. UU., Europa o Asia."],
+    [25, "Panel: estrategia de identidad y seguridad tecnológica", "Acceso físico y digital convergentes, cumplimiento y auditoría."],
+    [15, "Preguntas y próximos pasos", "Preguntas en vivo y una lista de verificación para tu operación."],
   ],
-  audience: ["Segurança corporativa", "CISOs", "Facilities", "TI e controle de acesso", "Continuidade de negócios", "Compliance e LGPD"],
-  finalTitle: "Não espere o próximo ataque para descobrir se seus acessos resistem.",
-  // Preguntas frecuentes propias del evento (se suman a las generales de abajo). Opcional.
-  faq: [],
+  audience: ["Nuevo León", "Coahuila", "Chihuahua", "Sonora", "Baja California", "Tamaulipas", "Seguridad patrimonial y corporativa", "CISOs y seguridad de la información", "Gerentes de planta y operaciones", "TI e infraestructura", "Recursos Humanos y contratistas", "Cumplimiento y auditoría", "Automotriz y maquiladoras", "Logística y parques industriales"],
+  finalTitle: "El nearshoring en el norte no espera. Tu estrategia de identidad tampoco debería.",
+  // Preguntas frecuentes propias del evento (se suman a las generales). Opcional.
+  faq: [["¿Es solo para la industria automotriz?", "No. Es para cualquier operación que crece en el norte de México: manufactura, maquiladoras, logística, parques industriales y centros de datos."], ["¿A qué hora es si estoy en Tijuana, Hermosillo o Ciudad Juárez?", "La página muestra la hora del evento en tu zona horaria automáticamente."]],
 };
 
 /* ════ Textos de la interfaz en cada idioma (no se tocan por evento) ════ */
@@ -435,7 +445,8 @@ const UI = {
     consent: "Acepto recibir información sobre este webinar por correo y WhatsApp, y que Limitless Media trate mis datos para ese fin. Puedo darme de baja cuando quiera.",
     submit: "Reservar mi lugar gratis →", sending: "Reservando…", trust: ["Gratis", "Grabación incluida", "Sin instalar nada"],
     errReq: "Completa tu nombre, un correo válido y acepta el aviso.", errWa: "Escribe tu WhatsApp (solo números).", errNet: "No pudimos registrarte. Intenta de nuevo en un momento.",
-    count: "personas ya reservaron su lugar",
+    count: "personas ya reservaron su lugar", tbd: "Fecha por anunciar", tbdSub: "te avisamos por correo y WhatsApp", panelTbd: "Panel de expertos por anunciar",
+    dSubTbd: "Te enviamos la confirmación por correo. Te avisaremos la fecha y el enlace por correo y WhatsApp.",
     speakersWith: "Con", and: "y",
     dTitle: "¡Listo, {n}! Tu lugar está reservado.", dSub: "Te enviamos la confirmación por correo y te escribiremos por WhatsApp. Agrégalo a tu calendario:",
     gcal: "Agregar a Google Calendar", outlook: "Agregar a Outlook", ics: "Descargar invitación (.ics)",
@@ -457,7 +468,8 @@ const UI = {
     consent: "Aceito receber informações sobre este webinar por e-mail e WhatsApp, e que a Limitless Media trate meus dados para esse fim, conforme a LGPD. Posso cancelar quando quiser.",
     submit: "Garantir minha vaga grátis →", sending: "Garantindo…", trust: ["Gratuito", "Gravação incluída", "Sem instalar nada"],
     errReq: "Preencha seu nome, um e-mail válido e aceite o aviso.", errWa: "Informe seu WhatsApp (somente números).", errNet: "Não conseguimos registrar. Tente de novo em instantes.",
-    count: "pessoas já garantiram a vaga",
+    count: "pessoas já garantiram a vaga", tbd: "Data a anunciar", tbdSub: "avisamos por e-mail e WhatsApp", panelTbd: "Painel de especialistas a anunciar",
+    dSubTbd: "Enviamos a confirmação por e-mail. Avisaremos a data e o link por e-mail e WhatsApp.",
     speakersWith: "Com", and: "e",
     dTitle: "Pronto, {n}! Sua vaga está garantida.", dSub: "Enviamos a confirmação por e-mail e vamos te escrever no WhatsApp. Adicione à sua agenda:",
     gcal: "Adicionar ao Google Agenda", outlook: "Adicionar ao Outlook", ics: "Baixar convite (.ics)",
@@ -479,7 +491,8 @@ const UI = {
     consent: "I agree to receive information about this webinar by email and WhatsApp, and for Limitless Media to process my data for that purpose. I can unsubscribe anytime.",
     submit: "Save my free seat →", sending: "Saving…", trust: ["Free", "Recording included", "Nothing to install"],
     errReq: "Add your name, a valid email and accept the notice.", errWa: "Add your WhatsApp number (digits only).", errNet: "We could not register you. Please try again shortly.",
-    count: "people already saved their seat",
+    count: "people already saved their seat", tbd: "Date to be announced", tbdSub: "we will let you know by email and WhatsApp", panelTbd: "Expert panel to be announced",
+    dSubTbd: "We emailed your confirmation. We will send the date and link by email and WhatsApp.",
     speakersWith: "With", and: "and",
     dTitle: "Done, {n}! Your seat is saved.", dSub: "We emailed your confirmation and will message you on WhatsApp. Add it to your calendar:",
     gcal: "Add to Google Calendar", outlook: "Add to Outlook", ics: "Download invite (.ics)",
@@ -515,7 +528,8 @@ const E = EVENTO, T = UI[E.lang] || UI.es;
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const locale = { es: "es", pt: "pt-BR", en: "en-US" }[E.lang] || "es";
-const start = new Date(E.start), end = new Date(start.getTime() + E.duration * 60000);
+const tbd = !E.start; // fecha por anunciar
+const start = new Date(E.start || "2100-01-01T00:00:00Z"), end = new Date(start.getTime() + E.duration * 60000);
 // ?simular=antes muestra la página como si faltaran 3 días (para revisar antes de publicar)
 const params = new URLSearchParams(location.search);
 const now = () => (params.get("simular") === "antes" ? new Date(start.getTime() - 3 * 864e5 + (Date.now() % 864e5)) : new Date());
@@ -532,22 +546,24 @@ document.documentElement.style.setProperty("--accent", E.sponsor.accent);
 // ── Portada ──
 $("sponsor-logo").src = E.sponsor.logo; $("sponsor-logo").alt = E.sponsor.name;
 if (E.heroImage) $("hero-bg").style.backgroundImage = `url('${E.heroImage}')`;
-$("pill").textContent = ended() ? T.ended : E.pill; $("hook").textContent = E.hook; $("title").innerHTML = E.title; $("sub").textContent = E.sub;
+$("pill").textContent = ended() ? T.ended : E.pill; $("hook").textContent = E.hook; $("title").innerHTML = E.title; if (E.title.replace(/<[^>]+>/g, "").length > 70) $("title").classList.add("long"); $("sub").textContent = E.sub;
 
 const fmt = (d, tz, o) => new Intl.DateTimeFormat(locale, { timeZone: tz, ...o }).format(d);
 const dayTxt = fmt(start, userTz, { weekday: "long", day: "numeric", month: "long" });
 const timeTxt = fmt(start, userTz, { hour: "2-digit", minute: "2-digit" });
 const refTxt = fmt(start, E.refTimeZone, { hour: "2-digit", minute: "2-digit" });
-$("when").innerHTML =
-  `<span class="chip"><b>${esc(dayTxt.charAt(0).toUpperCase() + dayTxt.slice(1))}</b></span>` +
+$("when").innerHTML = tbd
+  ? `<span class="chip"><b>${esc(T.tbd)}</b><span>${esc(T.tbdSub)}</span></span><span class="chip"><span>${esc(T.free)} · ${E.duration} min</span></span>`
+  : `<span class="chip"><b>${esc(dayTxt.charAt(0).toUpperCase() + dayTxt.slice(1))}</b></span>` +
   `<span class="chip"><b>${esc(timeTxt)}</b><span>${esc(T.yourTime)}${userTz !== E.refTimeZone ? ` · ${esc(refTxt)} ${esc(E.refTimeLabel)}` : ""}</span></span>` +
   `<span class="chip"><span>${esc(T.free)} · ${E.duration} min</span></span>`;
-$("tz-note").textContent = `${timeTxt} · ${userTz.split("/").pop().replace(/_/g, " ")}`;
+$("tz-note").textContent = tbd ? "" : `${timeTxt} · ${userTz.split("/").pop().replace(/_/g, " ")}`;
 
 // Caras de los oradores junto al título
 const initials = (n) => n.split(" ").map((w) => w[0]).slice(0, 2).join("");
 const names = E.speakers.map((s) => s.name.split(" ")[0]);
-$("faces").innerHTML = `<div class="stack">${E.speakers.map((s) => (s.photo ? `<img src="${esc(s.photo)}" alt="${esc(s.name)}">` : `<div>${esc(initials(s.name))}</div>`)).join("")}</div>` +
+if (!E.speakers.length) $("faces").innerHTML = `<span class="chip"><b>${esc(T.panelTbd)}</b></span>`;
+else $("faces").innerHTML = `<div class="stack">${E.speakers.map((s) => (s.photo ? `<img src="${esc(s.photo)}" alt="${esc(s.name)}">` : `<div>${esc(initials(s.name))}</div>`)).join("")}</div>` +
   `<p>${esc(T.speakersWith)} <b>${esc(names.length > 1 ? names.slice(0, -1).join(", ") + " " + T.and + " " + names[names.length - 1] : names[0] || "")}</b><br>${esc(E.speakers.slice(0, 3).map((s) => s.role.split("·")[0].trim()).join(" · "))}</p>`;
 
 // Resultados reales de ediciones anteriores (solo si se cargan en EVENTO.proof)
@@ -557,6 +573,7 @@ if (E.linkedinEvent) $("li-event").innerHTML = `${esc(T.liEvent)} <a href="${esc
 
 // Cuenta regresiva
 function tick() {
+  if (tbd) return;
   const ms = start - now();
   if (ms <= 0) { $("cd").innerHTML = ended() ? "" : `<div class="glass"><div class="n text-grad">●</div><div class="l">${esc(T.live)}</div></div>`; return; }
   const u = [Math.floor(ms / 864e5), Math.floor(ms / 36e5) % 24, Math.floor(ms / 6e4) % 60, Math.floor(ms / 1e3) % 60];
@@ -576,10 +593,16 @@ $("p-label").textContent = T.pLabel; $("p-title").textContent = E.problem.title;
 $("stats").innerHTML = E.problem.stats.map(([v, k]) => `<div class="glass stat reveal"><div class="v text-grad">${esc(v)}</div><div class="k">${esc(k)}</div></div>`).join("");
 $("dl-label").textContent = T.dlLabel; $("dl-title").textContent = T.dlTitle;
 $("cards").innerHTML = E.deliverables.map(([h, p], i) => `<div class="glass card reveal"><span class="i">0${i + 1}</span><h3>${esc(h)}</h3><p>${esc(p)}</p></div>`).join("");
+if (!E.speakers.length) $("speakers").closest("section").style.display = "none";
 $("sp-label").textContent = T.spLabel; $("sp-title").textContent = T.spTitle;
 $("speakers").innerHTML = E.speakers.map((s) => `<div class="glass spk reveal">${s.photo ? `<img class="ph" src="${esc(s.photo)}" alt="${esc(s.name)}" loading="lazy">` : `<div class="ph">${esc(initials(s.name))}</div>`}<span class="tag">${esc(s.tag)}</span><h3>${esc(s.name)}</h3><div class="role">${esc(s.role)}</div><p>${esc(s.bio)}</p></div>`).join("");
 $("ag-label").textContent = T.agLabel; $("ag-title").textContent = T.agTitle;
-$("agenda").innerHTML = E.agenda.map(([h, t, p]) => `<div class="glass ag reveal"><div class="h">${esc(h)}</div><div><h3>${esc(t)}</h3><p>${esc(p)}</p></div></div>`).join("");
+let offset = 0;
+$("agenda").innerHTML = E.agenda.map(([dur, t, p]) => {
+  const at = new Date(start.getTime() + offset * 60000); offset += Number(dur) || 0;
+  const h = tbd ? `${dur} min` : fmt(at, userTz, { hour: "2-digit", minute: "2-digit" });
+  return `<div class="glass ag reveal"><div class="h">${esc(h)}</div><div><h3>${esc(t)}</h3><p>${esc(p)}</p></div></div>`;
+}).join("");
 $("au-label").textContent = T.auLabel; $("au-title").textContent = T.auTitle;
 $("audience").innerHTML = E.audience.map((a) => `<span class="chip reveal"><b>${esc(a)}</b></span>`).join("");
 $("fq-label").textContent = T.fqLabel; $("fq-title").textContent = T.fqTitle;
@@ -658,8 +681,9 @@ function showDone(name) {
   $("cal-outlook").href = `https://outlook.office.com/calendar/0/deeplink/compose?subject=${encodeURIComponent(plainTitle)}&startdt=${start.toISOString()}&enddt=${end.toISOString()}&body=${encodeURIComponent(pageUrl)}`;
   const ics = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Limitless Media//Webinar//ES", "BEGIN:VEVENT", `UID:${E.slug}@thelimitlessmedia.co`, `DTSTAMP:${utc(new Date())}`, `DTSTART:${utc(start)}`, `DTEND:${utc(end)}`, `SUMMARY:${plainTitle.replace(/[,;]/g, " ")}`, `URL:${pageUrl}`, "END:VEVENT", "END:VCALENDAR"].join("\r\n");
   $("cal-ics").href = URL.createObjectURL(new Blob([ics], { type: "text/calendar" }));
+  if (tbd) { document.querySelector(".done .actions").style.display = "none"; }
   $("cal-google").textContent = T.gcal; $("cal-outlook").textContent = T.outlook; $("cal-ics").textContent = T.ics;
-  $("d-title").textContent = T.dTitle.replace("{n}", name.split(" ")[0]); $("d-sub").textContent = T.dSub;
+  $("d-title").textContent = T.dTitle.replace("{n}", name.split(" ")[0]); $("d-sub").textContent = tbd ? T.dSubTbd : T.dSub;
   $("m-title").textContent = T.mTitle; $("m-sub").textContent = T.mSub; $("m-submit").textContent = T.mSubmit; $("m-saved").textContent = T.mSaved;
   $("m-company").placeholder = T.company; $("m-role").placeholder = T.role;
   $("m-country").innerHTML = `<option value="">${esc(T.country)}</option>` + COUNTRIES.map((c) => `<option${c === guess ? " selected" : ""}>${esc(c[0])}</option>`).join("");
