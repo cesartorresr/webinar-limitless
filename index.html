@@ -511,15 +511,15 @@ const UI = {
 
 // Países: nombre, código de WhatsApp y zonas horarias para sugerirlo solo.
 const COUNTRIES = [
-  ["Brasil", "55", ["America/Sao_Paulo", "America/Bahia", "America/Fortaleza", "America/Recife", "America/Manaus", "America/Belem"]],
-  ["México", "52", ["America/Mexico_City", "America/Monterrey", "America/Tijuana", "America/Cancun", "America/Merida", "America/Chihuahua"]],
-  ["Colombia", "57", ["America/Bogota"]], ["Chile", "56", ["America/Santiago"]], ["Perú", "51", ["America/Lima"]],
-  ["Argentina", "54", ["America/Argentina/Buenos_Aires", "America/Buenos_Aires", "America/Argentina/Cordoba"]],
+  ["Brasil", "55", ["America/Sao_Paulo", "America/Bahia", "America/Fortaleza", "America/Recife", "America/Manaus", "America/Belem", "America/Maceio", "America/Cuiaba", "America/Campo_Grande", "America/Porto_Velho", "America/Boa_Vista", "America/Rio_Branco", "America/Araguaina", "America/Santarem", "America/Noronha", "Brazil/East"]],
+  ["México", "52", ["America/Mexico_City", "America/Monterrey", "America/Tijuana", "America/Hermosillo", "America/Ciudad_Juarez", "America/Matamoros", "America/Ojinaga", "America/Chihuahua", "America/Mazatlan", "America/Bahia_Banderas", "America/Cancun", "America/Merida", "America/Ensenada", "America/Santa_Isabel", "Mexico/BajaNorte", "Mexico/BajaSur", "Mexico/General"]],
+  ["Colombia", "57", ["America/Bogota"]], ["Chile", "56", ["America/Santiago", "America/Punta_Arenas", "Pacific/Easter"]], ["Perú", "51", ["America/Lima"]],
+  ["Argentina", "54", ["America/Argentina/Buenos_Aires", "America/Buenos_Aires", "America/Argentina/Cordoba", "America/Argentina/Mendoza", "America/Argentina/Salta", "America/Argentina/Tucuman", "America/Argentina/Ushuaia"]],
   ["Panamá", "507", ["America/Panama"]], ["Costa Rica", "506", ["America/Costa_Rica"]], ["Ecuador", "593", ["America/Guayaquil"]],
   ["Guatemala", "502", ["America/Guatemala"]], ["República Dominicana", "1", ["America/Santo_Domingo"]], ["Uruguay", "598", ["America/Montevideo"]],
   ["Paraguay", "595", ["America/Asuncion"]], ["Bolivia", "591", ["America/La_Paz"]], ["El Salvador", "503", ["America/El_Salvador"]],
   ["Honduras", "504", ["America/Tegucigalpa"]], ["Nicaragua", "505", ["America/Managua"]], ["Venezuela", "58", ["America/Caracas"]],
-  ["Estados Unidos", "1", ["America/New_York", "America/Chicago", "America/Denver", "America/Los_Angeles", "America/Phoenix"]],
+  ["Estados Unidos", "1", ["America/New_York", "America/Chicago", "America/Denver", "America/Los_Angeles", "America/Phoenix", "America/Detroit", "America/Indiana/Indianapolis", "America/Anchorage", "Pacific/Honolulu", "America/Boise", "America/Kentucky/Louisville"]],
   ["España", "34", ["Europe/Madrid"]], ["Otro", "", []],
 ];
 
@@ -537,7 +537,9 @@ const ended = () => now() > end;
 const plainTitle = E.title.replace(/<[^>]+>/g, "");
 const pageUrl = location.origin + location.pathname;
 const userTz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-const guess = COUNTRIES.find((c) => c[2].includes(userTz)) || COUNTRIES.find((c) => c[0] === { es: "Colombia", pt: "Brasil", en: "Estados Unidos" }[E.lang]);
+// País sugerido: el de la zona horaria de quien visita; si no se reconoce, el
+// país de la hora de referencia del evento (México para un evento en Monterrey).
+const guess = COUNTRIES.find((c) => c[2].includes(userTz)) || COUNTRIES.find((c) => c[2].includes(E.refTimeZone)) || COUNTRIES.find((c) => c[0] === "Otro");
 
 document.documentElement.lang = locale;
 document.documentElement.style.setProperty("--brand", E.sponsor.brand);
