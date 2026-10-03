@@ -12,15 +12,18 @@
   FORMS_URL es la hoja de Google "Formularios Limitless"
   (integraciones/formularios.gs en el repo de la web).
 -->
-<title>Retos del Nearshoring en el Norte de México: Identidad, Control de Accesos y Seguridad Tecnológica | Webinar gratuito</title>
-<meta name="description" content="De Tijuana a Monterrey, el nearshoring multiplica plantas, contratistas y turnos. Cómo gestionar identidades y accesos físicos y digitales sin frenar la operación. Webinar gratuito.">
+<title>Retos del Nearshoring: Identidad y Control de Identidades en la Industria Automotriz y Maquiladoras | Webinar gratuito · 12 nov 2026</title>
+<meta name="description" content="Webinar gratuito. Jueves 12 de noviembre de 2026, 10:00 a.m. hora del Centro de México. Altas masivas, credenciales seguras para empleados y contratistas y homologación de estándares en automotriz y maquiladoras del norte de México.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Retos del Nearshoring en el Norte de México | Webinar gratuito">
-<meta property="og:description" content="Identidad, control de accesos y seguridad tecnológica para plantas en Nuevo León, Coahuila, Chihuahua, Sonora, Baja California y Tamaulipas.">
-<meta property="og:image" content="https://webinar-limitless.vercel.app/og-nearshoring.jpg">
+<meta property="og:title" content="Retos del Nearshoring: Identidad y Control de Identidades en la Industria Automotriz y Maquiladoras | Webinar gratuito">
+<meta property="og:description" content="Webinar gratuito · Jueves 12 de noviembre de 2026, 10:00 a.m. (hora del Centro de México) · 90 minutos con HID Fargo y líderes de la industria automotriz y maquiladora del norte de México.">
+<meta property="og:image" content="https://webinar-limitless.vercel.app/og-nearshoring-v7.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Retos del Nearshoring: Identidad y Control de Identidades en la Industria Automotriz y Maquiladoras | Webinar gratuito">
+<meta name="twitter:description" content="Webinar gratuito · Jueves 12 de noviembre de 2026, 10:00 a.m. (hora del Centro de México) · 90 minutos.">
+<meta name="twitter:image" content="https://webinar-limitless.vercel.app/og-nearshoring-v7.jpg">
 <meta name="theme-color" content="#03070F">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -182,10 +185,18 @@
   .spk .role{font-size:13px;color:var(--text2)}
   .spk p{font-size:13.5px;color:var(--text2)}
   .agenda{margin-top:34px;display:grid;gap:10px}
-  .ag{display:grid;grid-template-columns:110px 1fr;gap:18px;padding:18px 20px}
+  .ag{display:grid;grid-template-columns:150px 1fr;gap:18px;padding:18px 20px}
   .ag .h{font-family:'IBM Plex Mono';color:var(--accent);font-size:14px}
   .ag h3{font-size:17px;margin-bottom:4px}
   .ag p{font-size:14px;color:var(--text2)}
+  .ag .by{color:var(--accent);font-size:13px;margin-top:6px;font-weight:500}
+  .ag .h{white-space:nowrap}
+  .when .also{flex-basis:100%;font-size:14px;color:var(--text2);padding-left:2px}
+  .spk.soon{border-style:dashed}
+  .spk.soon .ph{font-size:34px;color:var(--accent)}
+  .aud-g{padding:20px 22px;flex:1 1 100%;display:grid;gap:12px}
+  .aud-g .tag{font-family:'IBM Plex Mono';font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+  .aud-g>div{display:flex;flex-wrap:wrap;gap:8px}
   .aud{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
   .faq{margin-top:30px;display:grid;gap:10px;max-width:820px}
   .faq details{padding:18px 20px}
@@ -393,11 +404,13 @@ const EVENTO = {
   slug: "nearshoring-identidad-norte-mx-2026",  // identificador único, sin espacios
   lang: "es",                                  // "es", "pt" o "en"
   // Inicio en UTC. Vacío = "fecha por anunciar": la página capta preinscritos,
-  // sin cuenta regresiva ni calendario. 10:00 de Monterrey = 16:00 UTC.
-  start: "2026-11-12T16:00:00Z",              // jueves 12 de noviembre, 10:00 de Monterrey
-  duration: 75,                                // minutos
-  refTimeZone: "America/Monterrey",            // hora de referencia que se muestra
-  refTimeLabel: "hora de Monterrey",
+  // sin cuenta regresiva ni calendario. 10:00 del Centro de México = 16:00 UTC.
+  start: "2026-11-12T16:00:00Z",              // jueves 12 de noviembre, 10:00 a.m. del Centro de México
+  duration: 90,                                // minutos
+  refTimeZone: "America/Mexico_City",            // hora de referencia que se muestra
+  refTimeLabel: "hora del Centro de México",
+  // Otras horas de referencia que se muestran bajo la fecha (texto libre). Opcional.
+  otherTimes: "11:00 a.m. Bogotá / 8:00 a.m. Tijuana (hora del Pacífico)",
   whatsappRequired: true,                      // false = WhatsApp opcional
   showCountFrom: 50,                           // el contador aparece desde este número de inscritos
   replayUrl: "",                               // grabación, cuando exista
@@ -407,10 +420,10 @@ const EVENTO = {
   proof: [],
   sponsor: { name: "HID Global", logo: "hid-logo.png", brand: "#1A56A8", accent: "#E8912D" },
   heroImage: "hero-nearshoring.jpg",
-  pill: "Webinar en vivo · Gratuito · Con certificado",
+  pill: "Webinar gratuito",
   hook: "De Tijuana a Monterrey: plantas nuevas, miles de identidades y un solo estándar de seguridad.",
-  title: "Retos del Nearshoring en el Norte de México: <em>identidad, control de accesos</em> y seguridad tecnológica",
-  sub: "En Nuevo León, Coahuila, Chihuahua, Sonora, Baja California y Tamaulipas, el nearshoring multiplica plantas, proveedores, contratistas y turnos. Líderes de seguridad y tecnología comparten cómo controlar quién entra, a dónde y a qué sistemas, sin frenar la operación ni la auditoría del corporativo.",
+  title: "Retos del Nearshoring: <em>Identidad y Control de Identidades</em> en la Industria Automotriz y Maquiladoras",
+  sub: "En Monterrey, Saltillo, Ciudad Juárez, Tijuana y Reynosa, el nearshoring multiplica plantas, contratistas y turnos. En 90 minutos vemos cómo gestionar altas masivas, emitir credenciales seguras para empleados y contratistas y homologar estándares de seguridad entre matrices, sin frenar la operación.",
   problem: {
     title: "Cada planta nueva suma cientos de identidades. Cada identidad mal gestionada es una puerta abierta.",
     body: "Empleados, contratistas, proveedores y visitantes rotan todos los días entre plantas, oficinas y sistemas. Cuando cada sitio usa credenciales y reglas distintas, el acceso físico y el digital dejan de estar sincronizados: bajas que no se aplican, tarjetas compartidas y auditorías del corporativo global que no se pueden demostrar.",
@@ -427,21 +440,33 @@ const EVENTO = {
     ["Certificado gratuito", "Certificado de participación emitido por Limitless Media para quienes se conecten en vivo."],
     ["Grabación y material", "La grabación completa y las diapositivas en tu correo, aunque no puedas conectarte en vivo."],
   ],
-  // Oradores confirmados. Vacío = la sección se oculta y se muestra "Panel por anunciar".
-  speakers: [],
+  // Oradores. Vacío = la sección se oculta y se muestra "Panel por anunciar".
+  // soon: true = lugar reservado ("Próximamente"); para confirmar a alguien, quitar
+  // soon y poner name, role (cargo · empresa), bio y photo (archivo en la carpeta).
+  speakers: [
+    { tag: "Presentación HID Fargo", name: "Hugo Treviño", role: "Business Development Manager · HID Global", bio: "Presenta \"Innovación HID Fargo: Emisión Segura para el Boom del Nearshoring\".", photo: "hugo.jpg" },
+    { soon: true, tag: "Caso de estudio", name: "Próximamente", role: "Líderes de la industria automotriz y maquiladora del norte de México", bio: "", photo: "" },
+    { soon: true, tag: "Panel de discusión", name: "Próximamente", role: "Líderes de la industria automotriz y maquiladora del norte de México", bio: "", photo: "" },
+  ],
   // Agenda: [duración en minutos, tema, detalle]. Con fecha, se muestra la hora
   // de inicio de cada bloque en la zona de quien visita.
   agenda: [
-    [5, "Apertura: el mapa del nearshoring en el norte", "De Tijuana a Reynosa: qué industrias crecen y por qué la identidad es el nuevo cuello de botella."],
-    [15, "Automotriz y maquiladoras", "Turnos masivos, contratistas y rotación: controlar el acceso sin detener la línea."],
-    [15, "Homologación entre plantas globales", "Un solo estándar de identidad entre plantas del norte y el corporativo en EE. UU., Europa o Asia."],
-    [25, "Panel: estrategia de identidad y seguridad tecnológica", "Acceso físico y digital convergentes, cumplimiento y auditoría."],
-    [15, "Preguntas y próximos pasos", "Preguntas en vivo y una lista de verificación para tu operación."],
+    [5, "Apertura y Bienvenida", "", "Moderador"],
+    [15, "Caso de Estudio: la importancia del control de identidad", "Gestión de altas masivas, emisión segura de credenciales para empleados y contratistas, y estandarización entre matrices.", "Próximamente: líderes de la industria automotriz y maquiladora del norte de México"],
+    [15, "Presentación HID Fargo", "\"Innovación HID Fargo: Emisión Segura para el Boom del Nearshoring\".", "Hugo Treviño, HID"],
+    [45, "Panel de Discusión", "\"Retos del Nearshoring: Homologación de Estándares de Seguridad Física y Tecnologías de Identidad en México\".", "Próximamente: líderes de la industria automotriz y maquiladora del norte de México"],
+    [10, "Cierre y Conclusiones", "", "Moderador"],
   ],
-  audience: ["Nuevo León", "Coahuila", "Chihuahua", "Sonora", "Baja California", "Tamaulipas", "Seguridad patrimonial y corporativa", "CISOs y seguridad de la información", "Gerentes de planta y operaciones", "TI e infraestructura", "Recursos Humanos y contratistas", "Cumplimiento y auditoría", "Automotriz y maquiladoras", "Logística y parques industriales"],
+  // A quién va dirigido: [título del grupo, [elementos]].
+  audienceTitle: "A quién va dirigido",
+  audience: [
+    ["Industrias", ["Sector automotriz (Tier 1, Tier 2, armadoras)", "Maquiladoras", "Manufactura global"]],
+    ["Región", ["Norte de México: Monterrey, Saltillo, Ciudad Juárez, Tijuana y Reynosa"]],
+    ["Cargos", ["Plant Managers y Directores de Operaciones", "Directores y Gerentes de Seguridad Corporativa", "Gerentes de TI, Ciberseguridad e Infraestructura", "Gerentes de Recursos Humanos y Administración"]],
+  ],
   finalTitle: "El nearshoring en el norte no espera. Tu estrategia de identidad tampoco debería.",
   // Preguntas frecuentes propias del evento (se suman a las generales). Opcional.
-  faq: [["¿Es solo para la industria automotriz?", "No. Es para cualquier operación que crece en el norte de México: manufactura, maquiladoras, logística, parques industriales y centros de datos."], ["¿A qué hora es si estoy en Tijuana, Hermosillo o Ciudad Juárez?", "La página muestra la hora del evento en tu zona horaria automáticamente."]],
+  faq: [["¿Es solo para la industria automotriz?", "Está pensado para automotriz, maquiladoras y manufactura global, pero sirve a cualquier operación con plantas en el norte de México que necesite controlar identidades de empleados y contratistas."], ["¿A qué hora es si estoy en Tijuana, Hermosillo o Ciudad Juárez?", "Empieza a las 10:00 a.m. del Centro de México: 8:00 a.m. en Tijuana y 9:00 a.m. en Hermosillo y Ciudad Juárez. La página también muestra la hora en tu zona automáticamente."]],
 };
 
 /* ════ Textos de la interfaz en cada idioma (no se tocan por evento) ════ */
@@ -535,7 +560,7 @@ const COUNTRIES = [
 const E = EVENTO, T = UI[E.lang] || UI.es;
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-const locale = { es: "es", pt: "pt-BR", en: "en-US" }[E.lang] || "es";
+const locale = { es: "es-MX", pt: "pt-BR", en: "en-US" }[E.lang] || "es-MX";
 const tbd = !E.start; // fecha por anunciar
 const start = new Date(E.start || "2100-01-01T00:00:00Z"), end = new Date(start.getTime() + E.duration * 60000);
 // ?simular=antes muestra la página como si faltaran 3 días (para revisar antes de publicar)
@@ -560,21 +585,27 @@ $("pill").textContent = ended() ? T.ended : E.pill; $("hook").textContent = E.ho
 
 const fmt = (d, tz, o) => new Intl.DateTimeFormat(locale, { timeZone: tz, ...o }).format(d);
 const dayTxt = fmt(start, userTz, { weekday: "long", day: "numeric", month: "long" });
-const timeTxt = fmt(start, userTz, { hour: "2-digit", minute: "2-digit" });
-const refTxt = fmt(start, E.refTimeZone, { hour: "2-digit", minute: "2-digit" });
+const hm = E.lang === "pt" ? { hour: "2-digit", minute: "2-digit" } : { hour: "numeric", minute: "2-digit", hour12: true };
+const timeTxt = fmt(start, userTz, hm);
+const refTxt = fmt(start, E.refTimeZone, hm);
+const known = [E.refTimeZone, "America/Mexico_City", "America/Monterrey", "America/Bogota", "America/Tijuana"];
+const yourTxt = !known.includes(userTz) && !tbd ? ` · ${T.yourTime}: ${timeTxt}` : "";
+const dayRef = fmt(start, E.refTimeZone, { weekday: "long", day: "numeric", month: "long", year: "numeric" });
 $("when").innerHTML = tbd
   ? `<span class="chip"><b>${esc(T.tbd)}</b><span>${esc(T.tbdSub)}</span></span><span class="chip"><span>${esc(T.free)} · ${E.duration} min</span></span>`
-  : `<span class="chip"><b>${esc(dayTxt.charAt(0).toUpperCase() + dayTxt.slice(1))}</b></span>` +
-  `<span class="chip"><b>${esc(timeTxt)}</b><span>${esc(T.yourTime)}${userTz !== E.refTimeZone ? ` · ${esc(refTxt)} ${esc(E.refTimeLabel)}` : ""}</span></span>` +
-  `<span class="chip"><span>${esc(T.free)} · ${E.duration} min</span></span>`;
+  : `<span class="chip"><b>${esc(dayRef.charAt(0).toUpperCase() + dayRef.slice(1))}</b></span>` +
+  `<span class="chip"><b>${esc(refTxt)}</b><span>${esc(E.refTimeLabel)}</span></span>` +
+  `<span class="chip"><span>${esc(T.free)} · ${E.duration} min</span></span>` +
+  ((E.otherTimes || yourTxt) ? `<div class="also">${esc(E.otherTimes || "")}${esc(yourTxt)}</div>` : "");
 $("tz-note").textContent = tbd ? "" : `${timeTxt} · ${userTz.split("/").pop().replace(/_/g, " ")}`;
 
 // Caras de los oradores junto al título
 const initials = (n) => n.split(" ").map((w) => w[0]).slice(0, 2).join("");
-const names = E.speakers.map((s) => s.name.split(" ")[0]);
-if (!E.speakers.length) $("faces").innerHTML = `<span class="chip"><b>${esc(T.panelTbd)}</b></span>`;
-else $("faces").innerHTML = `<div class="stack">${E.speakers.map((s) => (s.photo ? `<img src="${esc(s.photo)}" alt="${esc(s.name)}">` : `<div>${esc(initials(s.name))}</div>`)).join("")}</div>` +
-  `<p>${esc(T.speakersWith)} <b>${esc(names.length > 1 ? names.slice(0, -1).join(", ") + " " + T.and + " " + names[names.length - 1] : names[0] || "")}</b><br>${esc(E.speakers.slice(0, 3).map((s) => s.role.split("·")[0].trim()).join(" · "))}</p>`;
+const confirmed = E.speakers.filter((s) => !s.soon);
+const names = confirmed.map((s) => s.name.split(" ")[0]);
+if (!confirmed.length) $("faces").innerHTML = `<span class="chip"><b>${esc(T.panelTbd)}</b></span>`;
+else $("faces").innerHTML = `<div class="stack">${confirmed.map((s) => (s.photo ? `<img src="${esc(s.photo)}" alt="${esc(s.name)}">` : `<div>${esc(initials(s.name))}</div>`)).join("")}</div>` +
+  `<p>${esc(T.speakersWith)} <b>${esc(names.length > 1 ? names.slice(0, -1).join(", ") + " " + T.and + " " + names[names.length - 1] : names[0] || "")}</b><br>${esc(confirmed.slice(0, 3).map((s) => s.role.split("·")[0].trim()).join(" · "))}</p>`;
 
 // Resultados reales de ediciones anteriores (solo si se cargan en EVENTO.proof)
 $("proof").innerHTML = E.proof.map(([v, k]) => `<span class="chip"><b>${esc(v)}</b><span>${esc(k)}</span></span>`).join("");
@@ -605,16 +636,18 @@ $("dl-label").textContent = T.dlLabel; $("dl-title").textContent = T.dlTitle;
 $("cards").innerHTML = E.deliverables.map(([h, p], i) => `<div class="glass card reveal"><span class="i">0${i + 1}</span><h3>${esc(h)}</h3><p>${esc(p)}</p></div>`).join("");
 if (!E.speakers.length) $("speakers").closest("section").style.display = "none";
 $("sp-label").textContent = T.spLabel; $("sp-title").textContent = T.spTitle;
-$("speakers").innerHTML = E.speakers.map((s) => `<div class="glass spk reveal">${s.photo ? `<img class="ph" src="${esc(s.photo)}" alt="${esc(s.name)}" loading="lazy">` : `<div class="ph">${esc(initials(s.name))}</div>`}<span class="tag">${esc(s.tag)}</span><h3>${esc(s.name)}</h3><div class="role">${esc(s.role)}</div><p>${esc(s.bio)}</p></div>`).join("");
+$("speakers").innerHTML = E.speakers.map((s) => `<div class="glass spk reveal${s.soon ? " soon" : ""}">${s.photo ? `<img class="ph" src="${esc(s.photo)}" alt="${esc(s.name)}" loading="lazy">` : `<div class="ph">${s.soon ? "+" : esc(initials(s.name))}</div>`}<span class="tag">${esc(s.tag)}</span><h3>${esc(s.name)}</h3><div class="role">${esc(s.role)}</div><p>${esc(s.bio)}</p></div>`).join("");
 $("ag-label").textContent = T.agLabel; $("ag-title").textContent = T.agTitle;
 let offset = 0;
-$("agenda").innerHTML = E.agenda.map(([dur, t, p]) => {
+$("agenda").innerHTML = E.agenda.map(([dur, t, p, by]) => {
   const at = new Date(start.getTime() + offset * 60000); offset += Number(dur) || 0;
-  const h = tbd ? `${dur} min` : fmt(at, userTz, { hour: "2-digit", minute: "2-digit" });
-  return `<div class="glass ag reveal"><div class="h">${esc(h)}</div><div><h3>${esc(t)}</h3><p>${esc(p)}</p></div></div>`;
+  const h = tbd ? `${dur} min` : `${fmt(at, userTz, hm)} · ${dur} min`;
+  return `<div class="glass ag reveal"><div class="h">${esc(h)}</div><div><h3>${esc(t)}</h3>${p ? `<p>${esc(p)}</p>` : ""}${by ? `<p class="by">${esc(by)}</p>` : ""}</div></div>`;
 }).join("");
-$("au-label").textContent = T.auLabel; $("au-title").textContent = T.auTitle;
-$("audience").innerHTML = E.audience.map((a) => `<span class="chip reveal"><b>${esc(a)}</b></span>`).join("");
+$("au-label").textContent = T.auLabel; $("au-title").textContent = E.audienceTitle || T.auTitle;
+$("audience").innerHTML = E.audience.map((a) => Array.isArray(a)
+  ? `<div class="glass aud-g reveal"><span class="tag">${esc(a[0])}</span><div>${a[1].map((x) => `<span class="chip"><b>${esc(x)}</b></span>`).join("")}</div></div>`
+  : `<span class="chip reveal"><b>${esc(a)}</b></span>`).join("");
 $("fq-label").textContent = T.fqLabel; $("fq-title").textContent = T.fqTitle;
 $("faq").innerHTML = [...E.faq, ...T.faq].map(([q, a]) => `<details class="glass reveal"><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join("");
 $("final-title").textContent = E.finalTitle; $("final-sub").textContent = T.finalSub;
