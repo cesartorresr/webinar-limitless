@@ -604,7 +604,7 @@ const initials = (n) => n.split(" ").map((w) => w[0]).slice(0, 2).join("");
 const confirmed = E.speakers.filter((s) => !s.soon);
 const names = confirmed.map((s) => s.name.split(" ")[0]);
 if (!confirmed.length) $("faces").innerHTML = `<span class="chip"><b>${esc(T.panelTbd)}</b></span>`;
-else $("faces").innerHTML = `<div class="stack">${confirmed.map((s) => (s.photo ? `<img src="${esc(s.photo)}" alt="${esc(s.name)}">` : `<div>${esc(initials(s.name))}</div>`)).join("")}</div>` +
+else $("faces").innerHTML = `<div class="stack">${confirmed.map((s) => (s.photo ? `<img src="${esc(s.photo)}" alt="${esc(s.name)}" data-ini="${esc(initials(s.name))}">` : `<div>${esc(initials(s.name))}</div>`)).join("")}</div>` +
   `<p>${esc(T.speakersWith)} <b>${esc(names.length > 1 ? names.slice(0, -1).join(", ") + " " + T.and + " " + names[names.length - 1] : names[0] || "")}</b><br>${esc(confirmed.slice(0, 3).map((s) => s.role.split("·")[0].trim()).join(" · "))}</p>`;
 
 // Resultados reales de ediciones anteriores (solo si se cargan en EVENTO.proof)
@@ -636,7 +636,12 @@ $("dl-label").textContent = T.dlLabel; $("dl-title").textContent = T.dlTitle;
 $("cards").innerHTML = E.deliverables.map(([h, p], i) => `<div class="glass card reveal"><span class="i">0${i + 1}</span><h3>${esc(h)}</h3><p>${esc(p)}</p></div>`).join("");
 if (!E.speakers.length) $("speakers").closest("section").style.display = "none";
 $("sp-label").textContent = T.spLabel; $("sp-title").textContent = T.spTitle;
-$("speakers").innerHTML = E.speakers.map((s) => `<div class="glass spk reveal${s.soon ? " soon" : ""}">${s.photo ? `<img class="ph" src="${esc(s.photo)}" alt="${esc(s.name)}" loading="lazy">` : `<div class="ph">${s.soon ? "+" : esc(initials(s.name))}</div>`}<span class="tag">${esc(s.tag)}</span><h3>${esc(s.name)}</h3><div class="role">${esc(s.role)}</div><p>${esc(s.bio)}</p></div>`).join("");
+$("speakers").innerHTML = E.speakers.map((s) => `<div class="glass spk reveal${s.soon ? " soon" : ""}">${s.photo ? `<img class="ph" src="${esc(s.photo)}" alt="${esc(s.name)}" loading="lazy" data-ini="${esc(initials(s.name))}">` : `<div class="ph">${s.soon ? "+" : esc(initials(s.name))}</div>`}<span class="tag">${esc(s.tag)}</span><h3>${esc(s.name)}</h3><div class="role">${esc(s.role)}</div><p>${esc(s.bio)}</p></div>`).join("");
+// Si falta la foto de un orador, se muestran sus iniciales en vez de una imagen rota.
+document.querySelectorAll("img[data-ini]").forEach((img) => {
+  const swap = () => { const d = document.createElement("div"); d.className = img.className; d.textContent = img.dataset.ini; img.replaceWith(d); };
+  if (img.complete && !img.naturalWidth) swap(); else img.addEventListener("error", swap);
+});
 $("ag-label").textContent = T.agLabel; $("ag-title").textContent = T.agTitle;
 let offset = 0;
 $("agenda").innerHTML = E.agenda.map(([dur, t, p, by]) => {
