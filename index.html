@@ -10,7 +10,10 @@
        WhatsApp para la vista previa del enlace, que no ejecuta JavaScript.
     2. El bloque EVENTO, más abajo en este mismo archivo.
   FORMS_URL es la hoja de Google "Formularios Limitless"
-  (integraciones/formularios.gs en el repo de la web).
+  (integraciones/formularios.gs en el repo de la web). Ese Apps Script
+  se despliega aparte: cambiar el archivo en git no actualiza el correo.
+  El enlace personal y el calendario los envía GoTo. Esta página no arma
+  otra invitación.
 -->
 <title>Retos del Nearshoring: Identidad y Control de Identidades en la Industria Automotriz y Maquiladoras | Webinar gratuito · 12 nov 2026</title>
 <meta name="description" content="Webinar gratuito. Jueves 12 de noviembre de 2026, 10:00 a.m. hora del Centro de México. Altas masivas, credenciales seguras para empleados y contratistas y homologación de estándares en automotriz y maquiladoras del norte de México.">
@@ -151,8 +154,6 @@
   .done .check{width:54px;height:54px;border-radius:50%;background:color-mix(in srgb,var(--accent) 16%,transparent);border:1px solid var(--accent);display:flex;align-items:center;justify-content:center;font-size:24px;color:var(--accent);margin-bottom:14px;box-shadow:0 0 30px color-mix(in srgb,var(--accent) 35%,transparent)}
   .done h2{font-size:24px;margin-bottom:6px}
   .done > p{color:var(--text2);font-size:14.5px;margin-bottom:14px}
-  .done .actions{display:grid;gap:8px;margin-bottom:18px}
-  .done .actions a{font-size:14px;padding:12px 16px}
   .block{border-top:1px solid var(--line);padding-top:16px;margin-top:4px}
   .block h3{font-size:16px;margin-bottom:4px}
   .block > p{font-size:13px;color:var(--text2);margin-bottom:12px}
@@ -299,11 +300,6 @@
             <div class="check">✓</div>
             <h2 id="d-title"></h2>
             <p id="d-sub"></p>
-            <div class="actions">
-              <a class="btn" id="cal-google" target="_blank" rel="noopener"></a>
-              <a class="btn btn-ghost" id="cal-outlook" target="_blank" rel="noopener"></a>
-              <a class="btn btn-ghost" id="cal-ics" download="webinar.ics"></a>
-            </div>
             <form class="block" id="more">
               <h3 id="m-title"></h3>
               <p id="m-sub"></p>
@@ -482,10 +478,11 @@ const UI = {
     submit: "Reservar mi lugar gratis →", sending: "Reservando…", trust: ["Gratis", "Certificado incluido", "Grabación incluida"],
     errReq: "Completa tu nombre, un correo válido y acepta el aviso.", errWa: "Escribe tu WhatsApp (solo números).", errNet: "No pudimos registrarte. Intenta de nuevo en un momento.",
     count: "personas ya reservaron su lugar", tbd: "Fecha por anunciar", tbdSub: "te avisamos por correo y WhatsApp", panelTbd: "Panel de expertos por anunciar",
-    dSubTbd: "Te enviamos la confirmación por correo. Te avisaremos la fecha y el enlace por correo y WhatsApp.",
+    dSubTbd: "Te avisaremos la fecha y el enlace por correo y WhatsApp.",
     speakersWith: "Con", and: "y",
-    dTitle: "¡Listo, {n}! Tu lugar está reservado.", dSub: "Te enviamos la confirmación por correo y te escribiremos por WhatsApp. Agrégalo a tu calendario:",
-    gcal: "Agregar a Google Calendar", outlook: "Agregar a Outlook", ics: "Descargar invitación (.ics)",
+    dTitle: "Recibimos tu solicitud, {n}.",
+    dWhen: "{date}, {mx} (hora del Centro de México) y {bog} (Bogotá).",
+    dSub: "Tu registro queda confirmado cuando recibes el correo de GoTo Webinar. Para entrar y guardar el evento en tu calendario, usa únicamente esa confirmación, que incluye tu enlace personal. Si no la encuentras, revisa spam.",
     mTitle: "Personaliza tu experiencia (opcional)", mSub: "Con esto preparamos ejemplos para tu sector.", company: "Empresa", role: "Cargo", country: "País", mSubmit: "Guardar", mSaved: "✓ Guardado. ¡Gracias!",
     sTitle: "¿Invitas a tu equipo?", sSub: "Los webinars rinden más cuando van dos o tres personas de la misma empresa.", copy: "Copiar enlace", copied: "¡Copiado!",
     shareText: "Me inscribí en este webinar gratuito y creo que te sirve:",
@@ -494,7 +491,7 @@ const UI = {
     finalSub: "Inscripción gratuita. Cupos limitados.", cta: "Reservar mi lugar gratis →",
     ended: "Este webinar ya se realizó", endedCta: "Ver la grabación →", endedForm: "Recibe la grabación", endedSubmit: "Quiero la grabación →",
     liEvent: "También puedes inscribirte en el", liEventLink: "evento de LinkedIn",
-    faq: [["¿Tiene costo?", "No. La inscripción y la participación son gratuitas."], ["¿Dan certificado?", "Sí. Quienes se conecten en vivo reciben un certificado de participación gratuito, emitido por Limitless Media."], ["¿Queda grabado?", "Sí. Todos los inscritos reciben la grabación y el material por correo, aunque no puedan conectarse en vivo."], ["¿Necesito instalar algo?", "No. Entras desde el navegador con el enlace que te enviamos por correo y WhatsApp."], ["¿Puedo hacer preguntas?", "Sí. Hay una sesión de preguntas y respuestas en vivo con los panelistas."]],
+    faq: [["¿Tiene costo?", "No. La inscripción y la participación son gratuitas."], ["¿Dan certificado?", "Sí. Quienes se conecten en vivo reciben un certificado de participación gratuito, emitido por Limitless Media."], ["¿Queda grabado?", "Sí. Todos los inscritos reciben la grabación y el material por correo, aunque no puedan conectarse en vivo."], ["¿Necesito instalar algo?", "No. Entras desde el navegador con el enlace personal de la confirmación de GoTo Webinar."], ["¿Puedo hacer preguntas?", "Sí. Hay una sesión de preguntas y respuestas en vivo con los panelistas."]],
     footer: "Organiza Limitless Media · Acceso ejecutivo curado en Latinoamérica y EE. UU.",
   },
   pt: {
@@ -505,10 +502,11 @@ const UI = {
     submit: "Garantir minha vaga grátis →", sending: "Garantindo…", trust: ["Gratuito", "Certificado incluído", "Gravação incluída"],
     errReq: "Preencha seu nome, um e-mail válido e aceite o aviso.", errWa: "Informe seu WhatsApp (somente números).", errNet: "Não conseguimos registrar. Tente de novo em instantes.",
     count: "pessoas já garantiram a vaga", tbd: "Data a anunciar", tbdSub: "avisamos por e-mail e WhatsApp", panelTbd: "Painel de especialistas a anunciar",
-    dSubTbd: "Enviamos a confirmação por e-mail. Avisaremos a data e o link por e-mail e WhatsApp.",
+    dSubTbd: "Avisaremos a data e o link por e-mail e WhatsApp.",
     speakersWith: "Com", and: "e",
-    dTitle: "Pronto, {n}! Sua vaga está garantida.", dSub: "Enviamos a confirmação por e-mail e vamos te escrever no WhatsApp. Adicione à sua agenda:",
-    gcal: "Adicionar ao Google Agenda", outlook: "Adicionar ao Outlook", ics: "Baixar convite (.ics)",
+    dTitle: "Recebemos sua solicitação, {n}.",
+    dWhen: "{date}, {mx} (horário do Centro do México) e {bog} (Bogotá).",
+    dSub: "Seu registro fica confirmado quando você recebe o e-mail do GoTo Webinar. Para entrar e salvar o evento na agenda, use somente essa confirmação, que inclui seu link pessoal. Se não a encontrar, verifique o spam.",
     mTitle: "Personalize sua experiência (opcional)", mSub: "Assim preparamos exemplos para o seu setor.", company: "Empresa", role: "Cargo", country: "País", mSubmit: "Salvar", mSaved: "✓ Salvo. Obrigado!",
     sTitle: "Convida sua equipe?", sSub: "Os webinars rendem mais quando vão duas ou três pessoas da mesma empresa.", copy: "Copiar link", copied: "Copiado!",
     shareText: "Me inscrevi neste webinar gratuito e acho que é útil para você:",
@@ -517,7 +515,7 @@ const UI = {
     finalSub: "Inscrição gratuita. Vagas limitadas.", cta: "Garantir minha vaga grátis →",
     ended: "Este webinar já aconteceu", endedCta: "Assistir à gravação →", endedForm: "Receba a gravação", endedSubmit: "Quero a gravação →",
     liEvent: "Você também pode se inscrever no", liEventLink: "evento do LinkedIn",
-    faq: [["Tem custo?", "Não. A inscrição e a participação são gratuitas."], ["Tem certificado?", "Sim. Quem participar ao vivo recebe um certificado de participação gratuito, emitido pela Limitless Media."], ["Fica gravado?", "Sim. Todos os inscritos recebem a gravação e o material por e-mail, mesmo que não possam assistir ao vivo."], ["Preciso instalar algo?", "Não. Você entra pelo navegador com o link que enviamos por e-mail e WhatsApp."], ["Posso fazer perguntas?", "Sim. Há uma sessão de perguntas e respostas ao vivo com os painelistas."]],
+    faq: [["Tem custo?", "Não. A inscrição e a participação são gratuitas."], ["Tem certificado?", "Sim. Quem participar ao vivo recebe um certificado de participação gratuito, emitido pela Limitless Media."], ["Fica gravado?", "Sim. Todos os inscritos recebem a gravação e o material por e-mail, mesmo que não possam assistir ao vivo."], ["Preciso instalar algo?", "Não. Você entra pelo navegador com o link pessoal da confirmação do GoTo Webinar."], ["Posso fazer perguntas?", "Sim. Há uma sessão de perguntas e respostas ao vivo com os painelistas."]],
     footer: "Realização Limitless Media · Acesso executivo curado na América Latina e EUA.",
   },
   en: {
@@ -528,10 +526,11 @@ const UI = {
     submit: "Save my free seat →", sending: "Saving…", trust: ["Free", "Certificate included", "Recording included"],
     errReq: "Add your name, a valid email and accept the notice.", errWa: "Add your WhatsApp number (digits only).", errNet: "We could not register you. Please try again shortly.",
     count: "people already saved their seat", tbd: "Date to be announced", tbdSub: "we will let you know by email and WhatsApp", panelTbd: "Expert panel to be announced",
-    dSubTbd: "We emailed your confirmation. We will send the date and link by email and WhatsApp.",
+    dSubTbd: "We will send the date and link by email and WhatsApp.",
     speakersWith: "With", and: "and",
-    dTitle: "Done, {n}! Your seat is saved.", dSub: "We emailed your confirmation and will message you on WhatsApp. Add it to your calendar:",
-    gcal: "Add to Google Calendar", outlook: "Add to Outlook", ics: "Download invite (.ics)",
+    dTitle: "We received your request, {n}.",
+    dWhen: "{date}, {mx} (Central Mexico time) and {bog} (Bogotá).",
+    dSub: "Your registration is confirmed when you receive the GoTo Webinar email. To join and save the event on your calendar, use only that confirmation, which includes your personal link. If you do not see it, check spam.",
     mTitle: "Personalize your experience (optional)", mSub: "It helps us prepare examples for your industry.", company: "Company", role: "Title", country: "Country", mSubmit: "Save", mSaved: "✓ Saved. Thank you!",
     sTitle: "Invite your team?", sSub: "Webinars pay off more when two or three people from the same company attend.", copy: "Copy link", copied: "Copied!",
     shareText: "I signed up for this free webinar and thought it could help you:",
@@ -540,7 +539,7 @@ const UI = {
     finalSub: "Free registration. Limited seats.", cta: "Save my free seat →",
     ended: "This webinar already took place", endedCta: "Watch the recording →", endedForm: "Get the recording", endedSubmit: "Send me the recording →",
     liEvent: "You can also register on the", liEventLink: "LinkedIn event",
-    faq: [["Is there a cost?", "No. Registration and attendance are free."], ["Do I get a certificate?", "Yes. Everyone who joins live receives a free certificate of participation issued by Limitless Media."], ["Will it be recorded?", "Yes. Every registrant receives the recording and slides by email, even if they cannot join live."], ["Do I need to install anything?", "No. You join from your browser with the link we send by email and WhatsApp."], ["Can I ask questions?", "Yes. There is a live Q&A with the panel."]],
+    faq: [["Is there a cost?", "No. Registration and attendance are free."], ["Do I get a certificate?", "Yes. Everyone who joins live receives a free certificate of participation issued by Limitless Media."], ["Will it be recorded?", "Yes. Every registrant receives the recording and slides by email, even if they cannot join live."], ["Do I need to install anything?", "No. You join from your browser with the personal link in the GoTo Webinar confirmation."], ["Can I ask questions?", "Yes. There is a live Q&A with the panel."]],
     footer: "Hosted by Limitless Media · Curated executive access in Latin America and the US.",
   },
 };
@@ -733,14 +732,13 @@ $("more").addEventListener("submit", (ev) => {
 });
 
 function showDone(name) {
-  const utc = (d) => d.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
-  $("cal-google").href = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(plainTitle)}&dates=${utc(start)}/${utc(end)}&details=${encodeURIComponent(pageUrl)}`;
-  $("cal-outlook").href = `https://outlook.office.com/calendar/0/deeplink/compose?subject=${encodeURIComponent(plainTitle)}&startdt=${start.toISOString()}&enddt=${end.toISOString()}&body=${encodeURIComponent(pageUrl)}`;
-  const ics = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Limitless Media//Webinar//ES", "BEGIN:VEVENT", `UID:${E.slug}@thelimitlessmedia.co`, `DTSTAMP:${utc(new Date())}`, `DTSTART:${utc(start)}`, `DTEND:${utc(end)}`, `SUMMARY:${plainTitle.replace(/[,;]/g, " ")}`, `URL:${pageUrl}`, "END:VEVENT", "END:VCALENDAR"].join("\r\n");
-  $("cal-ics").href = URL.createObjectURL(new Blob([ics], { type: "text/calendar" }));
-  if (tbd) { document.querySelector(".done .actions").style.display = "none"; }
-  $("cal-google").textContent = T.gcal; $("cal-outlook").textContent = T.outlook; $("cal-ics").textContent = T.ics;
-  $("d-title").textContent = T.dTitle.replace("{n}", name.split(" ")[0]); $("d-sub").textContent = tbd ? T.dSubTbd : T.dSub;
+  // GoTo envía el enlace personal y la invitación de calendario. Aquí no se arma otra.
+  const hm = { hour: "2-digit", minute: "2-digit", hourCycle: "h23" };
+  const zoneRange = (tz) => `${new Intl.DateTimeFormat("en-GB", { ...hm, timeZone: tz }).format(start)}–${new Intl.DateTimeFormat("en-GB", { ...hm, timeZone: tz }).format(end)}`;
+  const dateTxt = new Intl.DateTimeFormat(locale, { day: "numeric", month: "long", year: "numeric", timeZone: "America/Mexico_City" }).format(start);
+  const when = T.dWhen.replace("{date}", dateTxt).replace("{mx}", zoneRange("America/Mexico_City")).replace("{bog}", zoneRange("America/Bogota"));
+  $("d-title").textContent = T.dTitle.replace("{n}", name.split(" ")[0]);
+  $("d-sub").textContent = tbd ? T.dSubTbd : `${when} ${T.dSub}`;
   $("m-title").textContent = T.mTitle; $("m-sub").textContent = T.mSub; $("m-submit").textContent = T.mSubmit; $("m-saved").textContent = T.mSaved;
   $("m-company").placeholder = T.company; $("m-role").placeholder = T.role;
   $("m-country").innerHTML = `<option value="">${esc(T.country)}</option>` + COUNTRIES.map((c) => `<option${c === guess ? " selected" : ""}>${esc(c[0])}</option>`).join("");
